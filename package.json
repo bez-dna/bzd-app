@@ -5,9 +5,10 @@
   "scripts": {
     "android": "react-native run-android",
     "ios": "react-native run-ios",
-    "lint": "eslint .",
     "start": "react-native start",
-    "test": "jest"
+    "test": "jest",
+    "ci": "biome ci .",
+    "check": "biome check . --write"
   },
   "dependencies": {
     "@react-native-async-storage/async-storage": "^2.2.0",
@@ -28,6 +29,7 @@
     "@babel/core": "^7.28.3",
     "@babel/preset-env": "^7.28.3",
     "@babel/runtime": "^7.28.3",
+    "@biomejs/biome": "^2.2.3",
     "@react-native-community/cli": "20.0.1",
     "@react-native-community/cli-platform-android": "20.0.1",
     "@react-native-community/cli-platform-ios": "20.0.1",
