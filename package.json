@@ -4,7 +4,7 @@
     "android": "react-native run-android",
     "ios": "react-native run-ios",
     "start": "react-native start",
-    "ci": "biome ci . --error-on-warnings",
+    "ci": "biome ci .",
     "check": "biome check . --write"
   },
   "dependencies": {

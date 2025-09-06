@@ -21,7 +21,7 @@ jobs:
         run: bun install
 
       - name: Format
-        run: bun biome ci .
+        run: bun biome ci . --error-on-warnings
 
       - name: TypeScript
         run: bun tsc --noEmit
