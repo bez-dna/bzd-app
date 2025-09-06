@@ -1,20 +1,19 @@
-import axios, { AxiosInstance } from "axios";
-import { MainStore } from "../main/MainStore";
+import axios, { type AxiosInstance } from "axios";
 import { createContext, useContext } from "react";
-import { AuthAPI } from "./AuthApi";
 import Config from "react-native-config";
+import type { MainStore } from "../main/MainStore";
+import { AuthAPI } from "./AuthApi";
 
 export class API {
-  mainStore: MainStore
+  mainStore: MainStore;
   client: AxiosInstance;
-  apiUrl = Config.API_URL
   auth: AuthAPI;
 
   constructor(mainStore: MainStore) {
-    this.mainStore = mainStore
-
+    this.mainStore = mainStore;
 
     this.client = axios.create({
+      baseURL: Config.API_URL,
       adapter: "fetch",
     });
 
@@ -32,13 +31,12 @@ export class API {
   }
 }
 
-
-export const APIContext = createContext<API | null>(null)
+export const APIContext = createContext<API | null>(null);
 
 export const useAPI = (): API => {
-    const api = useContext(APIContext)
+  const api = useContext(APIContext);
 
-    if (api === null) throw new Error("PANIC!")
+  if (api === null) throw new Error("PANIC!");
 
-    return api
-}
+  return api;
+};

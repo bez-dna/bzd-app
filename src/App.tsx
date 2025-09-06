@@ -1,30 +1,25 @@
-import { Text, View } from "react-native"
-import { MainTabs } from "./main/MainTabs"
 import { createStaticNavigation } from "@react-navigation/native";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { MainStore, MainStoreContext } from "./main/MainStore";
-import { Layout } from "./layout/Layout";
 import { useEffect } from "react";
-import { API, APIContext } from "./api/Api";
-
+import { Layout } from "./layout/Layout";
+import { MainStore, MainStoreContext } from "./main/MainStore";
+import { MainTabs } from "./main/MainTabs";
 
 const Navigation = createStaticNavigation(MainTabs);
 
 export const App = () => {
-  const mainStore = new MainStore()
-  // const api = new API(mainStore)
+  const mainStore = new MainStore();
 
   useEffect(() => {
     (async () => {
       await mainStore.initialize();
-    })()
-  }, []);
+    })();
+  }, [mainStore.initialize]);
 
   return (
     <MainStoreContext.Provider value={mainStore}>
       <Layout>
         <Navigation />
-        </Layout>
+      </Layout>
     </MainStoreContext.Provider>
-  )
-}
+  );
+};
