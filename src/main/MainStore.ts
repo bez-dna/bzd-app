@@ -1,39 +1,35 @@
-import { makeAutoObservable, runInAction } from "mobx"
-import { createContext, useContext } from "react"
-import { AuthStore } from "./AuthStore"
-import { API } from "../api/Api"
+import { makeAutoObservable, runInAction } from "mobx";
+import { createContext, useContext } from "react";
+import { API } from "../api/Api";
+import { AuthStore } from "./AuthStore";
 
 export class MainStore {
-    initialized = false
-    authStore: AuthStore
-    api: API
+  initialized = false;
+  authStore: AuthStore;
+  api: API;
 
-    constructor() {
-        makeAutoObservable(this)
+  constructor() {
+    makeAutoObservable(this);
 
-        this.authStore = new AuthStore(this)
-        this.api = new API(this)
-    }
+    this.authStore = new AuthStore(this);
+    this.api = new API(this);
+  }
 
   initialize = async () => {
-      // this.workerStore.initialize();
-      console.log("MAIN INITED STARTED")
-      await this.authStore.initialize();
-      console.log("AUTH INIT STOPPED")
+    await this.authStore.initialize();
 
-      runInAction(() => {
-        console.log("MAIN INITED")
+    runInAction(() => {
       this.initialized = true;
     });
   };
 }
 
-export const MainStoreContext = createContext<MainStore | null>(null)
+export const MainStoreContext = createContext<MainStore | null>(null);
 
 export const useMainStore = (): MainStore => {
-    const mainStore = useContext(MainStoreContext)
+  const mainStore = useContext(MainStoreContext);
 
-    if (mainStore === null) throw new Error("PANIC!")
+  if (mainStore === null) throw new Error("PANIC!");
 
-    return mainStore
-}
+  return mainStore;
+};
