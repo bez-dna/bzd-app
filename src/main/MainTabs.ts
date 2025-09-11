@@ -3,6 +3,7 @@ import { MessagesStack } from "../messages/MessagesStack";
 import { SourcesScreen } from "../sources/SourcesScreen";
 
 export const MainTabs = createBottomTabNavigator({
+  initialRouteName: "Sources",
   screens: {
     Main: {
       screen: MessagesStack,
