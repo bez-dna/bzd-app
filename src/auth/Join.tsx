@@ -25,6 +25,7 @@ export const Join = observer(() => {
         <TextInput
           style={[themeStyles.input, styles.input]}
           value={form.phone_number}
+          placeholder="7 999 000 00-00"
           onChangeText={(phone_number) => setForm({ ...form, phone_number })}
         />
 

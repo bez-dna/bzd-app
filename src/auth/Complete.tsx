@@ -1,9 +1,11 @@
 import { useState } from "react";
-import { Button, StyleSheet, TextInput, View } from "react-native";
+import { Button, Pressable, Text, TextInput, View } from "react-native";
 import { useAPI } from "../api/Api";
 import { useMainStore } from "../main/MainStore";
 import { useAuthStore } from "./AuthStore";
 import { observer } from "mobx-react-lite";
+import { StyleSheet } from "react-native-unistyles";
+import { themeStyles } from "../theme/Theme";
 
 export const Complete = observer(() => {
   const api = useAPI();
@@ -29,18 +31,21 @@ export const Complete = observer(() => {
     <View style={[styles.root]}>
       <View style={[styles.cont]}>
         <TextInput
-          style={[styles.input]}
+          style={[themeStyles.input, styles.input]}
           value={form.code}
+          placeholder="0000"
           onChangeText={(code) => setForm({ ...form, code })}
         />
 
-        <Button onPress={handleSubmit} title="Login" />
+        <Pressable onPress={handleSubmit}>
+          <Text style={[themeStyles.button, styles.button]}>Login</Text>
+        </Pressable>
       </View>
     </View>
   );
 });
 
-const styles = StyleSheet.create({
+const styles = StyleSheet.create((theme) => ({
   root: {
     justifyContent: "center",
     flex: 1,
@@ -51,10 +56,10 @@ const styles = StyleSheet.create({
   },
 
   input: {
-    marginBottom: 10,
+    marginBottom: theme.margin.s,
   },
 
   button: {
     alignSelf: "flex-start",
   },
-});
+}));

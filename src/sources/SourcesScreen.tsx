@@ -8,6 +8,10 @@ import { observer } from "mobx-react-lite";
 export const SourcesScreen = observer(() => {
   const mainStore = useMainStore();
 
+  const handleLogout = async () => {
+    mainStore.updateJwt(null);
+  };
+
   const getContacts = async () => {
     const contacts = await Contacts.getAllWithoutPhotos();
     console.log(contacts);
@@ -20,6 +24,7 @@ export const SourcesScreen = observer(() => {
       ) : (
         <>
           <Text>SOURCES</Text>
+          <Button title="Logout" onPress={handleLogout} />
           <Button title="GET CONTACTS" onPress={getContacts} />
         </>
       )}

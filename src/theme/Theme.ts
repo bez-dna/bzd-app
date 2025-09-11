@@ -6,6 +6,9 @@ export const themeStyles = StyleSheet.create((theme) => ({
     backgroundColor: theme.colors.button.background,
     paddingHorizontal: theme.padding.x,
     paddingVertical: theme.padding.y,
+    minWidth: 100,
+    borderRadius: 9999,
+    textAlign: "center",
   },
 
   input: {
