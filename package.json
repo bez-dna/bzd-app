@@ -39,6 +39,7 @@
     "@react-native/metro-config": "0.81.1",
     "@react-native/typescript-config": "0.81.1",
     "@types/react": "^19.1.12",
+    "jest": "^30.1.3",
     "typescript": "^5.9.2"
   }
 }

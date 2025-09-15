@@ -10,6 +10,7 @@ import "./unistyles";
 import { useUnistyles } from "react-native-unistyles";
 import { MainTabs } from "./main/MainTabs";
 import type { MessagesStack } from "./messages/MessagesStack";
+import { NewMessageStack } from "./messages/new/NewMessageStack";
 
 const Navigation = createStaticNavigation(MainTabs);
 
@@ -38,8 +39,10 @@ type MainTabsParamList = StaticParamList<typeof MainTabs>;
 
 type MessagesStackParamList = StaticParamList<typeof MessagesStack>;
 
+type NewMessageStackParamList = StaticParamList<typeof NewMessageStack>;
+
 declare global {
   namespace ReactNavigation {
-    interface RootParamList extends MainTabsParamList, MessagesStackParamList {}
+    interface RootParamList extends MainTabsParamList, MessagesStackParamList, NewMessageStackParamList {}
   }
 }
