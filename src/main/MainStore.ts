@@ -1,39 +1,68 @@
-import { makeAutoObservable, runInAction } from "mobx"
-import { createContext, useContext } from "react"
-import { AuthStore } from "./AuthStore"
-import { API } from "../api/Api"
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { makeAutoObservable, runInAction } from "mobx";
+import { createContext, useContext } from "react";
+import { API } from "../api/Api";
+
+const JWT = "jwt";
 
 export class MainStore {
-    initialized = false
-    authStore: AuthStore
-    api: API
+  initialized = false;
 
-    constructor() {
-        makeAutoObservable(this)
+  jwt: string | null = null;
+  user: User | null = null;
 
-        this.authStore = new AuthStore(this)
-        this.api = new API(this)
-    }
+  api: API;
+
+  constructor() {
+    makeAutoObservable(this);
+
+    // this.authStore = new AuthStore(this);
+    this.api = new API(this);
+  }
 
   initialize = async () => {
-      // this.workerStore.initialize();
-      console.log("MAIN INITED STARTED")
-      await this.authStore.initialize();
-      console.log("AUTH INIT STOPPED")
+    const jwt = await AsyncStorage.getItem(JWT);
 
-      runInAction(() => {
-        console.log("MAIN INITED")
+    this.updateJwt(jwt);
+
+    runInAction(() => {
       this.initialized = true;
     });
   };
+
+  updateJwt = async (jwt: string | null) => {
+    if (jwt !== null) {
+      await AsyncStorage.setItem(JWT, jwt);
+    } else {
+      await AsyncStorage.removeItem(JWT);
+    }
+
+    runInAction(() => {
+      this.jwt = jwt;
+    });
+
+    const data = await this.api.auth.me();
+
+    runInAction(() => {
+      this.user = data.user;
+    });
+  };
+
+  get isAuth(): boolean {
+    return this.user !== null;
+  }
 }
 
-export const MainStoreContext = createContext<MainStore | null>(null)
+export const MainStoreContext = createContext<MainStore | null>(null);
 
 export const useMainStore = (): MainStore => {
-    const mainStore = useContext(MainStoreContext)
+  const mainStore = useContext(MainStoreContext);
 
-    if (mainStore === null) throw new Error("PANIC!")
+  if (mainStore === null) throw new Error("PANIC!");
 
-    return mainStore
-}
+  return mainStore;
+};
+
+type User = {
+  user_id: string;
+};

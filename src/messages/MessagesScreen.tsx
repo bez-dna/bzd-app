@@ -1,6 +1,6 @@
-import { CommonActions, useNavigation } from "@react-navigation/native";
-import { Button, Text } from "react-native"
-import { SafeAreaView } from "react-native-safe-area-context"
+import { useNavigation } from "@react-navigation/native";
+import { Button, Text } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 export const MessagesScreen = () => {
   const navigation = useNavigation();
@@ -12,6 +12,16 @@ export const MessagesScreen = () => {
         title="TO MESSAGE"
         onPress={() => navigation.navigate("Message")}
       />
+
+      <Button
+        title="TO SOURCES"
+        onPress={() => navigation.navigate("Sources")}
+      />
+
+      <Button
+        title="ADD NEW"
+        onPress={() => navigation.navigate("NewMessage")}
+      />
     </SafeAreaView>
-  )
-}
+  );
+};

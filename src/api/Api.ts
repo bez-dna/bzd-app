@@ -1,44 +1,37 @@
-import axios, { AxiosInstance } from "axios";
-import { MainStore } from "../main/MainStore";
-import { createContext, useContext } from "react";
-import { AuthAPI } from "./AuthApi";
+import axios, { type AxiosInstance } from "axios";
 import Config from "react-native-config";
+import { type MainStore, useMainStore } from "../main/MainStore";
+import { AuthAPI } from "./AuthApi";
 
 export class API {
-  mainStore: MainStore
+  mainStore: MainStore;
   client: AxiosInstance;
-  apiUrl = Config.API_URL
   auth: AuthAPI;
 
   constructor(mainStore: MainStore) {
-    this.mainStore = mainStore
-
+    this.mainStore = mainStore;
 
     this.client = axios.create({
+      baseURL: Config.API_URL,
       adapter: "fetch",
     });
 
     this.auth = new AuthAPI(this);
 
-    // this.client.interceptors.request.use((config) => {
-    //   if (this.rootStore.token !== null) {
-    //     config.headers.Authorization = `Bearer ${this.rootStore.token}`;
-    //   }
+    this.client.interceptors.request.use((config) => {
+      if (this.mainStore.jwt !== null) {
+        config.headers.Authorization = `Bearer ${this.mainStore.jwt}`;
+      }
 
-    //   config.headers.Locale = i18nStore.locale;
+      //   config.headers.Locale = i18nStore.locale;
 
-    //   return config;
-    // });
+      return config;
+    });
   }
 }
 
-
-export const APIContext = createContext<API | null>(null)
-
 export const useAPI = (): API => {
-    const api = useContext(APIContext)
+  const mainStore = useMainStore();
 
-    if (api === null) throw new Error("PANIC!")
-
-    return api
-}
+  return mainStore.api;
+};

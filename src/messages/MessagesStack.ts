@@ -1,17 +1,34 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { MessagesScreen } from "./MessagesScreen";
 import { MessageScreen } from "./MessageScreen";
+import { MessagesScreen } from "./MessagesScreen";
+import { NewMessageStack } from "./new/NewMessageStack";
 
 export const MessagesStack = createNativeStackNavigator({
-  screens: {
-    Messages: {
-      screen: MessagesScreen
+  initialRouteName: "Messages",
+  groups: {
+    MessagesModal: {
+      screenOptions: {
+        presentation: "modal",
+      },
+      screens: {
+        NewMessage: {
+          screen: NewMessageStack,
+        },
+      },
     },
-    Message: {
-      screen: MessageScreen
-    }
+    MessagesMain: {
+      screens: {
+        Messages: {
+          screen: MessagesScreen,
+        },
+        Message: {
+          screen: MessageScreen,
+        },
+      },
+    },
   },
+
   screenOptions: {
-    headerShown: false
-  }
-})
+    headerShown: false,
+  },
+});

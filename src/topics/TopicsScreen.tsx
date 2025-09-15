@@ -1,10 +1,10 @@
 import { Text } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
-export const MessageScreen = () => {
+export const TopicsScreen = () => {
   return (
     <SafeAreaView>
-      <Text>MessageScreen</Text>
+      <Text>TopicsScreen</Text>
     </SafeAreaView>
   );
 };
