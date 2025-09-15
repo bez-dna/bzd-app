@@ -1,11 +1,15 @@
-import { createStaticNavigation } from "@react-navigation/native";
+import {
+  createStaticNavigation,
+  type StaticParamList,
+} from "@react-navigation/native";
 import { StrictMode, useEffect } from "react";
 import { Layout } from "./layout/Layout";
 import { MainStore, MainStoreContext } from "./main/MainStore";
-import { MainTabs } from "./main/MainTabs";
 
 import "./unistyles";
 import { useUnistyles } from "react-native-unistyles";
+import { MainTabs } from "./main/MainTabs";
+import type { MessagesStack } from "./messages/MessagesStack";
 
 const Navigation = createStaticNavigation(MainTabs);
 
@@ -29,3 +33,13 @@ export const App = () => {
     </StrictMode>
   );
 };
+
+type MainTabsParamList = StaticParamList<typeof MainTabs>;
+
+type MessagesStackParamList = StaticParamList<typeof MessagesStack>;
+
+declare global {
+  namespace ReactNavigation {
+    interface RootParamList extends MainTabsParamList, MessagesStackParamList {}
+  }
+}

@@ -4,9 +4,11 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { Auth } from "../auth/Auth";
 import { useMainStore } from "../main/MainStore";
 import { observer } from "mobx-react-lite";
+import { useNavigation } from "@react-navigation/native";
 
 export const SourcesScreen = observer(() => {
   const mainStore = useMainStore();
+  const navigation = useNavigation();
 
   const handleLogout = async () => {
     mainStore.updateJwt(null);
@@ -19,6 +21,8 @@ export const SourcesScreen = observer(() => {
 
   return (
     <SafeAreaView style={[styles.root]}>
+      <Button title="BACK" onPress={() => navigation.navigate("Main")} />
+
       {!mainStore.isAuth ? (
         <Auth />
       ) : (

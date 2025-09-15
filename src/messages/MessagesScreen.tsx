@@ -12,6 +12,16 @@ export const MessagesScreen = () => {
         title="TO MESSAGE"
         onPress={() => navigation.navigate("Message")}
       />
+
+      <Button
+        title="TO SOURCES"
+        onPress={() => navigation.navigate("Sources")}
+      />
+
+      <Button
+        title="ADD NEW"
+        onPress={() => navigation.navigate("NewMessage")}
+      />
     </SafeAreaView>
   );
 };
