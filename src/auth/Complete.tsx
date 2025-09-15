@@ -1,11 +1,11 @@
+import { observer } from "mobx-react-lite";
 import { useState } from "react";
-import { Button, Pressable, Text, TextInput, View } from "react-native";
+import { Pressable, Text, TextInput, View } from "react-native";
+import { StyleSheet } from "react-native-unistyles";
 import { useAPI } from "../api/Api";
 import { useMainStore } from "../main/MainStore";
-import { useAuthStore } from "./AuthStore";
-import { observer } from "mobx-react-lite";
-import { StyleSheet } from "react-native-unistyles";
 import { themeStyles } from "../theme/Theme";
+import { useAuthStore } from "./AuthStore";
 
 export const Complete = observer(() => {
   const api = useAPI();

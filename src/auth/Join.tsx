@@ -3,8 +3,8 @@ import { useState } from "react";
 import { Pressable, Text, TextInput, View } from "react-native";
 import { StyleSheet } from "react-native-unistyles";
 import { useAPI } from "../api/Api";
-import { useAuthStore } from "./AuthStore";
 import { themeStyles } from "../theme/Theme";
+import { useAuthStore } from "./AuthStore";
 
 export const Join = observer(() => {
   const api = useAPI();

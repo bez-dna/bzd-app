@@ -1,5 +1,4 @@
 import axios, { type AxiosInstance } from "axios";
-import { createContext, useContext } from "react";
 import Config from "react-native-config";
 import { type MainStore, useMainStore } from "../main/MainStore";
 import { AuthAPI } from "./AuthApi";
@@ -27,16 +26,6 @@ export class API {
       //   config.headers.Locale = i18nStore.locale;
 
       return config;
-    });
-
-    this.client.interceptors.request.use((request) => {
-      console.log("Starting Request", JSON.stringify(request, null, 2));
-      return request;
-    });
-
-    this.client.interceptors.response.use((response) => {
-      console.log("Response:", JSON.stringify(response, null, 2));
-      return response;
     });
   }
 }

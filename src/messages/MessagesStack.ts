@@ -24,9 +24,8 @@ export const MessagesStack = createNativeStackNavigator({
         Message: {
           screen: MessageScreen,
         },
-
       },
-    }
+    },
   },
 
   screenOptions: {

@@ -17,5 +17,3 @@ export const MainTabs = createBottomTabNavigator({
     headerShown: false,
   },
 });
-
-
