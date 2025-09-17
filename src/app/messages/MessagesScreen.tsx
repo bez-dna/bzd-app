@@ -1,18 +1,10 @@
-import Lucide from "@react-native-vector-icons/lucide";
 import { useNavigation } from "@react-navigation/native";
-import { User as UserIcon, Camera } from "lucide-react-native";
-import {
-  Button,
-  FlatList,
-  Pressable,
-  ScrollView,
-  Text,
-  View,
-} from "react-native";
+import { Camera, User as UserIcon } from "lucide-react-native";
+import { FlatList, Pressable, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 export const MessagesScreen = () => {
-  const navigation = useNavigation();
+  const _navigation = useNavigation();
 
   const data = [...Array(100).keys()].map((i) => {
     return {

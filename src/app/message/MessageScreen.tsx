@@ -1,4 +1,4 @@
-import { StaticScreenProps } from "@react-navigation/native";
+import type { StaticScreenProps } from "@react-navigation/native";
 import { Text } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 

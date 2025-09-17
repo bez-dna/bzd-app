@@ -3,8 +3,8 @@ import {
   type StaticParamList,
 } from "@react-navigation/native";
 import { StrictMode, useEffect } from "react";
-import { Layout } from "./layout/Layout";
 import { MainStore, MainStoreContext } from "./app/main/MainStore";
+import { Layout } from "./layout/Layout";
 
 import "./unistyles";
 import { useUnistyles } from "react-native-unistyles";

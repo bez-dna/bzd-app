@@ -1,8 +1,8 @@
 import { observer } from "mobx-react-lite";
 import type { PropsWithChildren } from "react";
-import { ActivityIndicator, StyleSheet, View } from "react-native";
-import { useMainStore } from "../app/main/MainStore";
+import { ActivityIndicator, StyleSheet } from "react-native";
 import { SafeAreaProvider } from "react-native-safe-area-context";
+import { useMainStore } from "../app/main/MainStore";
 
 export const Layout = observer(({ children }: PropsWithChildren) => {
   const mainStore = useMainStore();
