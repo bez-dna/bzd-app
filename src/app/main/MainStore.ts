@@ -1,7 +1,7 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { makeAutoObservable, runInAction } from "mobx";
 import { createContext, useContext } from "react";
-import { API } from "../api/Api";
+import { API } from "../../api/Api";
 
 const JWT = "jwt";
 
@@ -23,7 +23,7 @@ export class MainStore {
   initialize = async () => {
     const jwt = await AsyncStorage.getItem(JWT);
 
-    this.updateJwt(jwt);
+    await this.updateJwt(jwt);
 
     runInAction(() => {
       this.initialized = true;

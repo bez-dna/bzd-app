@@ -12,8 +12,9 @@ export const MainTabs = createBottomTabNavigator({
       screen: SourcesScreen,
     },
   },
+
   screenOptions: {
-    tabBarStyle: { display: "none" },
     headerShown: false,
+    tabBarStyle: { display: "none" },
   },
 });
