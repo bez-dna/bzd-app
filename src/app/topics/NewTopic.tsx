@@ -1,8 +1,8 @@
-import { Pressable, Text, TextInput, View } from "react-native";
 import { observer } from "mobx-react-lite";
 import { useState } from "react";
-import { themeStyles } from "../../theme/Theme";
+import { Pressable, Text, TextInput, View } from "react-native";
 import { useAPI } from "../../api/Api";
+import { themeStyles } from "../../theme/Theme";
 
 export const NewTopic = observer(() => {
   const api = useAPI();

@@ -1,9 +1,9 @@
-import { FlatList, Text, View } from "react-native";
-import { type Topic, useTopicsStore } from "./TopicsStore";
 import { observer } from "mobx-react-lite";
 import { useEffect } from "react";
+import { FlatList, Text, View } from "react-native";
 import { useAPI } from "../../api/Api";
 import { NewTopic } from "./NewTopic";
+import { type Topic, useTopicsStore } from "./TopicsStore";
 
 export const TopicsList = observer(() => {
   const topicsStore = useTopicsStore();

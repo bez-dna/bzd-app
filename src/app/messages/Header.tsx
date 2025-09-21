@@ -1,8 +1,8 @@
-import { SafeAreaView } from "react-native-safe-area-context";
-import { UserIcon, MessageCirclePlusIcon } from "lucide-react-native";
-import { Pressable, View } from "react-native";
-import { StyleSheet } from "react-native-unistyles";
 import { useNavigation } from "@react-navigation/native";
+import { MessageCirclePlusIcon, UserIcon } from "lucide-react-native";
+import { Pressable, View } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { StyleSheet } from "react-native-unistyles";
 
 export const Header = () => {
   return (

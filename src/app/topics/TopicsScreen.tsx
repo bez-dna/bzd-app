@@ -1,5 +1,5 @@
-import { TopicsStore, TopicsStoreContext } from "./TopicsStore";
 import { TopicsList } from "./TopicsList";
+import { TopicsStore, TopicsStoreContext } from "./TopicsStore";
 
 export const TopicsScreen = () => {
   return (
