@@ -2,11 +2,13 @@ import axios, { type AxiosInstance } from "axios";
 import Config from "react-native-config";
 import { type MainStore, useMainStore } from "../app/main/MainStore";
 import { AuthAPI } from "./AuthApi";
+import { TopicsAPI } from "./TopicsApi";
 
 export class API {
   mainStore: MainStore;
   client: AxiosInstance;
   auth: AuthAPI;
+  topics: TopicsAPI;
 
   constructor(mainStore: MainStore) {
     this.mainStore = mainStore;
@@ -17,6 +19,7 @@ export class API {
     });
 
     this.auth = new AuthAPI(this);
+    this.topics = new TopicsAPI(this);
 
     this.client.interceptors.request.use((config) => {
       if (this.mainStore.jwt !== null) {
@@ -27,6 +30,16 @@ export class API {
 
       return config;
     });
+
+    this.client.interceptors.response.use(
+      (response) => {
+        // console.log("Response:", JSON.stringify(response, null, 2));
+        return response;
+      },
+      (error) => {
+        console.log(error);
+      },
+    );
   }
 }
 

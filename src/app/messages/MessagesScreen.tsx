@@ -1,7 +1,6 @@
 import { useNavigation } from "@react-navigation/native";
-import { Camera, User as UserIcon } from "lucide-react-native";
 import { FlatList, Pressable, Text, View } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
+import { Header } from "./Header";
 
 export const MessagesScreen = () => {
   const _navigation = useNavigation();
@@ -61,19 +60,5 @@ const Item = ({ title, id }: ItemProps) => {
         <Text style={{ color: "white" }}>{title}</Text>
       </Pressable>
     </View>
-  );
-};
-
-const Header = () => {
-  return (
-    <SafeAreaView
-      edges={["right", "top", "left"]}
-      style={{ flex: 1, backgroundColor: "red" }}
-    >
-      <Camera color="green" size={48} />
-      <UserIcon color="green" size={48} />
-      {/* <Lucide name="user" /> */}
-      <Text>HEADER</Text>
-    </SafeAreaView>
   );
 };

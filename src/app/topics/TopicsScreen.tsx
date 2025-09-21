@@ -1,10 +1,10 @@
-import { Text } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
+import { TopicsStore, TopicsStoreContext } from "./TopicsStore";
+import { TopicsList } from "./TopicsList";
 
 export const TopicsScreen = () => {
   return (
-    <SafeAreaView>
-      <Text>TopicsScreen</Text>
-    </SafeAreaView>
+    <TopicsStoreContext.Provider value={new TopicsStore()}>
+      <TopicsList />
+    </TopicsStoreContext.Provider>
   );
 };
