@@ -32,11 +32,9 @@ export class API {
     });
 
     this.client.interceptors.response.use(
-      (response) => {
-        // console.log("Response:", JSON.stringify(response, null, 2));
-        return response;
-      },
+      (response) => response,
       (error) => {
+        // biome-ignore lint/suspicious/noConsole: нужно сделать пропагацию ошибок отсюда в mainStore и сделать аккуратный блок с дисплеем этой ошибки куда-то в UI без тостов
         console.log(error);
       },
     );

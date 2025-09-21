@@ -12,10 +12,7 @@ export const NewTopic = observer(() => {
   });
 
   const handleSubmit = async () => {
-    console.log(form);
-    const data = await api.topics.create_topic(form);
-    console.log(data);
-    // authStore.setVerificationId(data.verification.verification_id);
+    const _data = await api.topics.create_topic(form);
   };
 
   return (
