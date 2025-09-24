@@ -1,7 +1,5 @@
-import { useNavigation } from "@react-navigation/native";
-import { Button } from "react-native";
-import { NewMessageStore, NewMessageStoreContext } from "./NewMessageStore";
 import { CreateMessage } from "./CreateMessage";
+import { NewMessageStore, NewMessageStoreContext } from "./NewMessageStore";
 
 export const CreateMessageScreen = () => {
   return (

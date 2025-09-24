@@ -1,11 +1,11 @@
 import { observer } from "mobx-react-lite";
-import { Pressable, Text, TextInput, View } from "react-native";
-import { useAPI } from "../../api/Api";
-import { useNewMessageStore } from "./NewMessageStore";
-import { themeStyles } from "../../theme/Theme";
 import { useEffect } from "react";
-import { TopicsSelect } from "./TopicsSelect";
+import { Pressable, Text, TextInput, View } from "react-native";
 import { StyleSheet } from "react-native-unistyles";
+import { useAPI } from "../../api/Api";
+import { themeStyles } from "../../theme/Theme";
+import { useNewMessageStore } from "./NewMessageStore";
+import { TopicsSelect } from "./TopicsSelect";
 
 export const CreateMessage = observer(() => {
   const api = useAPI();

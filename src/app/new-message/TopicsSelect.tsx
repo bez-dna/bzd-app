@@ -1,8 +1,8 @@
+import { useNavigation } from "@react-navigation/native";
 import { observer } from "mobx-react-lite";
 import { Pressable, Text, View } from "react-native";
-import { useNewMessageStore } from "./NewMessageStore";
 import { StyleSheet } from "react-native-unistyles";
-import { useNavigation } from "@react-navigation/native";
+import { useNewMessageStore } from "./NewMessageStore";
 
 export const TopicsSelect = observer(() => {
   const nav = useNavigation();

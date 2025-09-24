@@ -36,8 +36,6 @@ export class API {
 
     this.client.interceptors.response.use(
       (response) => {
-        console.log("Response:", JSON.stringify(response, null, 2));
-
         return response;
       },
       (error) => {

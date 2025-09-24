@@ -1,10 +1,10 @@
 import { observer } from "mobx-react-lite";
 import { useEffect } from "react";
 import { FlatList, Text, View } from "react-native";
+import { StyleSheet } from "react-native-unistyles";
 import { useAPI } from "../../api/Api";
 import { NewTopic } from "./NewTopic";
 import { type Topic, useTopicsStore } from "./TopicsStore";
-import { StyleSheet } from "react-native-unistyles";
 
 export const TopicsList = observer(() => {
   const topicsStore = useTopicsStore();
