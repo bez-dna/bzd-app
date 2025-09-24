@@ -43,7 +43,7 @@ const Sources = () => {
   );
 };
 
-const styles = StyleSheet.create((_theme) => ({
+const styles = StyleSheet.create((theme) => ({
   root: {
     flexDirection: "row",
     justifyContent: "flex-end",
@@ -54,7 +54,8 @@ const styles = StyleSheet.create((_theme) => ({
   },
 
   icon: {
-    padding: 8,
-    marginRight: 8,
+    backgroundColor: "red",
+    padding: theme.padding.y,
+    marginRight: theme.padding.x,
   },
 }));

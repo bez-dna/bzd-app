@@ -28,4 +28,4 @@ export type Topic = {
   title: string;
 };
 
-type Topics = Topic[];
+export type Topics = Topic[];

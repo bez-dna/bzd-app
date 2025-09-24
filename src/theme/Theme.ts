@@ -12,15 +12,15 @@ export const themeStyles = StyleSheet.create((theme) => ({
   },
 
   input: {
-    backgroundColor: theme.colors.background.secondary,
+    backgroundColor: theme.colors.background.input,
     color: theme.colors.text.primary,
     fontSize: theme.fonts.primary,
     paddingHorizontal: theme.padding.x,
-    paddingVertical: theme.padding.y,
+    paddingVertical: theme.padding.y * 1.5,
     borderWidth: theme.border.default,
     borderColor: theme.colors.border,
     borderRadius: theme.border.radius,
-    fontWeight: 600,
+    fontWeight: 500,
     overflow: "hidden",
   },
 }));

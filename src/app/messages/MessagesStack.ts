@@ -5,26 +5,20 @@ import { MessagesScreen } from "./MessagesScreen";
 
 export const MessagesStack = createNativeStackNavigator({
   initialRouteName: "Messages",
-  groups: {
-    MessagesModal: {
-      screenOptions: {
-        presentation: "modal",
-      },
-      screens: {
-        NewMessage: {
-          screen: NewMessageStack,
-        },
+
+  screens: {
+    NewMessage: {
+      screen: NewMessageStack,
+      options: {
+        animation: "fade_from_bottom",
       },
     },
-    MessagesMain: {
-      screens: {
-        Messages: {
-          screen: MessagesScreen,
-        },
-        Message: {
-          screen: MessageScreen,
-        },
-      },
+
+    Messages: {
+      screen: MessagesScreen,
+    },
+    Message: {
+      screen: MessageScreen,
     },
   },
 

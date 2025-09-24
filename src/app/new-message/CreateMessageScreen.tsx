@@ -1,15 +1,12 @@
 import { useNavigation } from "@react-navigation/native";
-import { Button, Text } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
+import { Button } from "react-native";
+import { NewMessageStore, NewMessageStoreContext } from "./NewMessageStore";
+import { CreateMessage } from "./CreateMessage";
 
 export const CreateMessageScreen = () => {
-  const navigation = useNavigation();
-
   return (
-    <SafeAreaView>
-      <Text>CreateMessageScreen</Text>
-
-      <Button title="TO TOPICS" onPress={() => navigation.navigate("Topics")} />
-    </SafeAreaView>
+    <NewMessageStoreContext.Provider value={new NewMessageStore()}>
+      <CreateMessage />
+    </NewMessageStoreContext.Provider>
   );
 };

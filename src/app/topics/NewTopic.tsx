@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Pressable, Text, TextInput, View } from "react-native";
 import { useAPI } from "../../api/Api";
 import { themeStyles } from "../../theme/Theme";
+import { StyleSheet } from "react-native-unistyles";
 
 export const NewTopic = observer(() => {
   const api = useAPI();
@@ -18,15 +19,25 @@ export const NewTopic = observer(() => {
   return (
     <View>
       <TextInput
-        style={[themeStyles.input]}
+        style={[themeStyles.input, styles.input]}
         value={form.title}
-        placeholder="Название топика"
+        placeholder="New topic.."
         onChangeText={(title) => setForm({ ...form, title })}
       />
 
-      <Pressable onPress={handleSubmit}>
+      <Pressable style={styles.submit} onPress={handleSubmit}>
         <Text style={[themeStyles.button]}>Save</Text>
       </Pressable>
     </View>
   );
 });
+
+const styles = StyleSheet.create((theme) => ({
+  input: {
+    marginBottom: theme.margin.m,
+  },
+
+  submit: {
+    alignSelf: "center",
+  },
+}));
