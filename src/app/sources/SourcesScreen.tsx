@@ -5,18 +5,29 @@ import Contacts from "react-native-contacts";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Auth } from "../auth/Auth";
 import { useMainStore } from "../main/MainStore";
+import { useAPI } from "../../api/Api";
 
 export const SourcesScreen = observer(() => {
   const mainStore = useMainStore();
   const navigation = useNavigation();
+  const api = useAPI();
 
   const handleLogout = async () => {
     mainStore.updateJwt(null);
   };
 
   const getContacts = async () => {
-    const _contacts = await Contacts.getAllWithoutPhotos();
-    // console.log(contacts);
+    const contacts = await Contacts.getAllWithoutPhotos();
+
+    api.contacts.create_contacts({
+      contacts: contacts.flatMap((contact) =>
+        contact.phoneNumbers.map((phone_number) => ({
+          name: `${contact.givenName} ${contact.familyName}`.trim(),
+          phone_number: phone_number.number,
+          device_contact_id: contact.recordID,
+        })),
+      ),
+    });
   };
 
   return (
