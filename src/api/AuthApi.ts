@@ -8,17 +8,16 @@ export class AuthAPI {
   }
 
   me = async (): Promise<MeResponse> => {
-    return (await this.api.client.get<MeResponse>("/api/auth/me")).data;
+    return (await this.api.client.get<MeResponse>("/auth/me")).data;
   };
 
   join = async (data: JoinRequest): Promise<JoinResponse> => {
-    return (await this.api.client.post<JoinResponse>("/api/auth/join", data))
-      .data;
+    return (await this.api.client.post<JoinResponse>("/auth/join", data)).data;
   };
 
   complete = async (data: CompleteRequest): Promise<CompleteResponse> => {
     return (
-      await this.api.client.post<CompleteResponse>("/api/auth/complete", data)
+      await this.api.client.post<CompleteResponse>("/auth/complete", data)
     ).data;
   };
 }

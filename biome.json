@@ -1,12 +1,18 @@
 {
-  "$schema": "https://biomejs.dev/schemas/2.2.3/schema.json",
+  "$schema": "https://biomejs.dev/schemas/2.2.5/schema.json",
   "vcs": {
     "enabled": false,
     "clientKind": "git",
     "useIgnoreFile": false
   },
   "files": {
-    "includes": ["**", "!**/vendor", "!**/ios/Pods"],
+    "includes": [
+      "**",
+      "!**/vendor",
+      "!**/ios/Pods",
+      "!**/android/app/build",
+      "!**/android/build"
+    ],
     "ignoreUnknown": false
   },
   "formatter": {

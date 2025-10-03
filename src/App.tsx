@@ -3,14 +3,14 @@ import {
   type StaticParamList,
 } from "@react-navigation/native";
 import { StrictMode, useEffect } from "react";
+import { MainStore, MainStoreContext } from "./app/main/MainStore";
 import { Layout } from "./layout/Layout";
-import { MainStore, MainStoreContext } from "./main/MainStore";
 
 import "./unistyles";
 import { useUnistyles } from "react-native-unistyles";
-import { MainTabs } from "./main/MainTabs";
-import type { MessagesStack } from "./messages/MessagesStack";
-import type { NewMessageStack } from "./messages/new/NewMessageStack";
+import { MainTabs } from "./app/main/MainTabs";
+import type { MessagesStack } from "./app/messages/MessagesStack";
+import type { NewMessageStack } from "./app/new-message/NewMessageStack";
 
 const Navigation = createStaticNavigation(MainTabs);
 

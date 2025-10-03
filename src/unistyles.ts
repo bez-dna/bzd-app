@@ -10,10 +10,11 @@ const shared = {
   },
   padding: {
     x: 10,
-    y: 12,
+    y: 8,
   },
   margin: {
-    s: 12,
+    s: 16,
+    m: 32,
   },
   border: {
     default: 1,
@@ -30,13 +31,14 @@ const lightTheme: Unitheme = {
   colors: {
     text: {
       primary: "rgb(7, 7, 7)",
-      secondary: "rgb(7, 7, 7)",
+      // secondary: "rgb(7, 7, 7)",
     },
     background: {
       primary: "rgb(252, 252, 252)",
-      secondary: "rgb(238, 238, 238)",
+      secondary: "rgb(237, 237, 237)",
+      input: "rgb(247, 247, 247)",
     },
-    border: "rgb(223, 223, 223)",
+    border: "rgb(222, 222, 222)",
     button: {
       text: "rgb(252, 252, 252)",
       background: "rgb(7, 7, 7)",
@@ -55,13 +57,14 @@ const darkTheme: Unitheme = {
   colors: {
     text: {
       primary: "rgb(221, 221, 221)",
-      secondary: "rgb(221, 221, 221)",
+      // secondary: "rgb(221, 221, 221)",
     },
     background: {
-      primary: "rgb(27, 27, 27)",
-      secondary: "rgb(27, 27 27)",
+      primary: "rgb(18, 18, 18)",
+      secondary: "rgb(33, 33, 33)",
+      input: "rgb(23, 23, 23)",
     },
-    border: "rgb(27, 27 27)",
+    border: "rgb(48, 48, 48)",
     button: {
       text: "rgb(7, 7, 7)",
       background: "rgb(252, 252, 252)",
@@ -77,11 +80,12 @@ type Unitheme = {
   colors: {
     text: {
       primary: string;
-      secondary: string;
+      // secondary: string;
     };
     background: {
       primary: string;
       secondary: string;
+      input: string;
     };
     border: string;
     button: {
@@ -98,6 +102,7 @@ type Unitheme = {
   };
   margin: {
     s: number;
+    m: number;
   };
   border: {
     default: number;

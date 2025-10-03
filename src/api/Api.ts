@@ -1,12 +1,20 @@
 import axios, { type AxiosInstance } from "axios";
 import Config from "react-native-config";
-import { type MainStore, useMainStore } from "../main/MainStore";
+import { type MainStore, useMainStore } from "../app/main/MainStore";
 import { AuthAPI } from "./AuthApi";
+import { ContactsAPI } from "./ContactsApi";
+import { MessagesAPI } from "./MessagesApi";
+import { SourcesAPI } from "./SourcesApi";
+import { TopicsAPI } from "./TopicsApi";
 
 export class API {
   mainStore: MainStore;
   client: AxiosInstance;
   auth: AuthAPI;
+  topics: TopicsAPI;
+  messages: MessagesAPI;
+  contacts: ContactsAPI;
+  sources: SourcesAPI;
 
   constructor(mainStore: MainStore) {
     this.mainStore = mainStore;
@@ -17,6 +25,10 @@ export class API {
     });
 
     this.auth = new AuthAPI(this);
+    this.topics = new TopicsAPI(this);
+    this.messages = new MessagesAPI(this);
+    this.contacts = new ContactsAPI(this);
+    this.sources = new SourcesAPI(this);
 
     this.client.interceptors.request.use((config) => {
       if (this.mainStore.jwt !== null) {
@@ -27,6 +39,16 @@ export class API {
 
       return config;
     });
+
+    this.client.interceptors.response.use(
+      (response) => {
+        return response;
+      },
+      (error) => {
+        // biome-ignore lint/suspicious/noConsole: нужно сделать пропагацию ошибок отсюда в mainStore и сделать аккуратный блок с дисплеем этой ошибки куда-то в UI без тостов
+        console.log(error);
+      },
+    );
   }
 }
 
