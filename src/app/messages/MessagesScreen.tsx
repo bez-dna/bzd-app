@@ -1,7 +1,7 @@
 import { useNavigation } from "@react-navigation/native";
 import { FlatList, Pressable, Text, View } from "react-native";
-import { Header } from "./Header";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { Header } from "./Header";
 
 export const MessagesScreen = () => {
   const _navigation = useNavigation();

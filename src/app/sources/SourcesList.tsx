@@ -1,11 +1,10 @@
-import { FlatList, Text, View } from "react-native";
 import { observer } from "mobx-react-lite";
 import { useEffect } from "react";
+import { FlatList, Text, View } from "react-native";
 import { StyleSheet } from "react-native-unistyles";
-
-import { Header } from "./Header";
 import { useAPI } from "../../api/Api";
-import { Source, useSourcesStore } from "./SourcesStore";
+import { Header } from "./Header";
+import { type Source, useSourcesStore } from "./SourcesStore";
 
 export const SourcesList = observer(() => {
   const api = useAPI();
@@ -14,7 +13,6 @@ export const SourcesList = observer(() => {
   useEffect(() => {
     (async () => {
       const sources = (await api.sources.get_sources()).sources;
-      console.log(sources);
       sourcesStore.setSources(sources);
     })();
   }, [api.sources.get_sources, sourcesStore.setSources]);
