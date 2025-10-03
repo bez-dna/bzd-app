@@ -5,6 +5,7 @@ import { AuthAPI } from "./AuthApi";
 import { MessagesAPI } from "./MessagesApi";
 import { TopicsAPI } from "./TopicsApi";
 import { ContactsAPI } from "./ContactsApi";
+import { SourcesAPI } from "./SourcesApi";
 
 export class API {
   mainStore: MainStore;
@@ -13,6 +14,7 @@ export class API {
   topics: TopicsAPI;
   messages: MessagesAPI;
   contacts: ContactsAPI;
+  sources: SourcesAPI;
 
   constructor(mainStore: MainStore) {
     this.mainStore = mainStore;
@@ -26,6 +28,7 @@ export class API {
     this.topics = new TopicsAPI(this);
     this.messages = new MessagesAPI(this);
     this.contacts = new ContactsAPI(this);
+    this.sources = new SourcesAPI(this);
 
     this.client.interceptors.request.use((config) => {
       if (this.mainStore.jwt !== null) {
