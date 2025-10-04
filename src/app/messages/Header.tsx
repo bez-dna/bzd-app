@@ -1,6 +1,7 @@
 import { useNavigation } from "@react-navigation/native";
 import { Pressable, Text, View } from "react-native";
 import { StyleSheet } from "react-native-unistyles";
+import { useI18n } from "../../i18n/I18nStore";
 
 export const Header = () => {
   return (
@@ -15,6 +16,7 @@ export const Header = () => {
 
 const NewMessage = () => {
   const nav = useNavigation();
+  const { t } = useI18n();
 
   const handlePress = () => {
     nav.navigate("NewMessage");
@@ -22,14 +24,14 @@ const NewMessage = () => {
 
   return (
     <Pressable style={styles.item} onPress={handlePress}>
-      <Text style={styles.label}>New message</Text>
-      {/* <MessageCirclePlusIcon size={24} /> */}
+      <Text style={styles.label}>{t("messages.header.new_message")}</Text>
     </Pressable>
   );
 };
 
 const Sources = () => {
   const nav = useNavigation();
+  const { t } = useI18n();
 
   const handlePress = () => {
     nav.navigate("Sources");
@@ -37,8 +39,7 @@ const Sources = () => {
 
   return (
     <Pressable style={[styles.item, styles.sources]} onPress={handlePress}>
-      <Text style={styles.label}>Sources</Text>
-      {/* <UserIcon size={24} /> */}
+      <Text style={styles.label}>{t("messages.header.sources")}</Text>
     </Pressable>
   );
 };
