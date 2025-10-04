@@ -2,9 +2,9 @@ import type i18n from "i18next";
 import { createInstance } from "i18next";
 import { findBestLanguageTag } from "react-native-localize";
 
+import { type MainStore, useMainStore } from "../app/main/MainStore";
 import { dict as en } from "./en";
 import { dict as ru } from "./ru";
-import { type MainStore, useMainStore } from "../app/main/MainStore";
 
 export type Dict = typeof en;
 
