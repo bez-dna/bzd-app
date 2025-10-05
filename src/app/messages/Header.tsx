@@ -63,7 +63,8 @@ const styles = StyleSheet.create((theme) => ({
   label: {
     lineHeight: 24,
     color: theme.colors.text.primary,
-    // TODO: добоавить болдовости
+    fontSize: theme.fonts.base * 0.875,
+    fontWeight: 700,
   },
 
   sources: {

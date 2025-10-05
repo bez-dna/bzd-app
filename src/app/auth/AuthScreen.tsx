@@ -4,8 +4,10 @@ import { useCallback } from "react";
 import { AuthStore, AuthStoreContext } from "./AuthStore";
 import { Complete } from "./Complete";
 import { Join } from "./Join";
+import { Header } from "./Header";
+import { SafeAreaView } from "react-native-safe-area-context";
 
-export const Auth = observer(() => {
+export const AuthScreen = observer(() => {
   const authStore = new AuthStore();
 
   useFocusEffect(
@@ -17,10 +19,14 @@ export const Auth = observer(() => {
   );
 
   return (
-    <AuthStoreContext.Provider value={authStore}>
-      <Observer>
-        {() => (!authStore.isComplete ? <Join /> : <Complete />)}
-      </Observer>
-    </AuthStoreContext.Provider>
+    <SafeAreaView>
+      <AuthStoreContext.Provider value={authStore}>
+        <Header />
+
+        <Observer>
+          {() => (!authStore.isComplete ? <Join /> : <Complete />)}
+        </Observer>
+      </AuthStoreContext.Provider>
+    </SafeAreaView>
   );
 });

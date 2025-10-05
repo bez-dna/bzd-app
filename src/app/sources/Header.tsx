@@ -2,11 +2,13 @@ import { useNavigation } from "@react-navigation/native";
 import { XIcon } from "lucide-react-native";
 import { Pressable, Text, View } from "react-native";
 import { StyleSheet } from "react-native-unistyles";
+import { SafeAreaView } from "react-native-safe-area-context";
+
 import { useMainStore } from "../main/MainStore";
 
 export const Header = () => {
   return (
-    <View style={styles.root}>
+    <SafeAreaView style={styles.root} edges={["top", "right", "left"]}>
       <View style={styles.left}>
         <BacktoMessages />
       </View>
@@ -14,7 +16,7 @@ export const Header = () => {
       <View style={styles.right}>
         <Logout />
       </View>
-    </View>
+    </SafeAreaView>
   );
 };
 
@@ -76,5 +78,7 @@ const styles = StyleSheet.create((theme) => ({
   label: {
     color: theme.colors.text.primary,
     lineHeight: 24,
+    fontSize: theme.fonts.base * 0.875,
+    fontWeight: 700,
   },
 }));

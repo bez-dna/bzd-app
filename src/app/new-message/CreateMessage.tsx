@@ -3,7 +3,6 @@ import { useEffect } from "react";
 import { Pressable, Text, TextInput, View } from "react-native";
 import { StyleSheet } from "react-native-unistyles";
 import { useAPI } from "../../api/Api";
-import { themeStyles } from "../../theme/Theme";
 import { useNewMessageStore } from "./NewMessageStore";
 import { TopicsSelect } from "./TopicsSelect";
 
@@ -36,7 +35,7 @@ export const CreateMessage = observer(() => {
       />
 
       <Pressable style={[styles.submit]} onPress={handleSubmit}>
-        <Text style={[themeStyles.button]}>Save</Text>
+        <Text>Save</Text>
       </Pressable>
     </View>
   );
@@ -51,7 +50,7 @@ const styles = StyleSheet.create((theme) => ({
   input: {
     backgroundColor: theme.colors.background.input,
     color: theme.colors.text.primary,
-    fontSize: theme.fonts.primary,
+    // fontSize: theme.fonts.base,
     paddingHorizontal: theme.padding.x,
     paddingVertical: theme.padding.y,
     borderWidth: theme.border.default,
