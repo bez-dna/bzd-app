@@ -4,9 +4,9 @@ import { Pressable, Text, TextInput, View } from "react-native";
 import { StyleSheet } from "react-native-unistyles";
 
 import { useAPI } from "../../api/Api";
+import { useI18n } from "../../i18n/I18nStore";
 import { useMainStore } from "../main/MainStore";
 import { useAuthStore } from "./AuthStore";
-import { useI18n } from "../../i18n/I18nStore";
 
 export const Complete = observer(() => {
   const api = useAPI();

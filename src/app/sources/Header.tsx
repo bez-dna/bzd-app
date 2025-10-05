@@ -1,8 +1,8 @@
 import { useNavigation } from "@react-navigation/native";
 import { XIcon } from "lucide-react-native";
 import { Pressable, Text, View } from "react-native";
-import { StyleSheet } from "react-native-unistyles";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { StyleSheet } from "react-native-unistyles";
 
 import { useMainStore } from "../main/MainStore";
 
