@@ -6,7 +6,7 @@ import { useI18n } from "../../i18n/I18nStore";
 import { useAPI } from "../../api/Api";
 import { useSourcesStore } from "./SourcesStore";
 
-// TODO: проверка прав не работает на iOS https://github.com/morenoh149/react-native-contacts/issues/765
+// TBD: проверка прав не работает на iOS https://github.com/morenoh149/react-native-contacts/issues/765
 // нужно подключить другую либу для пермиссий чтобы блок не показывался постоянно.
 
 export const GetContacts = () => {

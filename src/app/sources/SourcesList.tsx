@@ -24,6 +24,8 @@ export const SourcesList = observer(() => {
         const { sources, contacts } = await api.sources.get_sources();
         sourcesStore.setSources(sources);
         sourcesStore.setContacts(contacts);
+
+        // TBD: нужно убрать аналогичные вызовы в SourcesListContact и GetContacts
       })();
 
       return () => {
