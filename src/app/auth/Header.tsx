@@ -1,16 +1,13 @@
 import { useNavigation } from "@react-navigation/native";
 import { XIcon } from "lucide-react-native";
 import { Pressable, View } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
 import { StyleSheet } from "react-native-unistyles";
 
 export const Header = () => {
   return (
-    <SafeAreaView style={styles.root} edges={["top", "right", "left"]}>
-      <View style={styles.left}>
-        <BacktoMessages />
-      </View>
-    </SafeAreaView>
+    <View style={styles.left}>
+      <BacktoMessages />
+    </View>
   );
 };
 
@@ -22,7 +19,7 @@ const BacktoMessages = () => {
   };
 
   return (
-    <Pressable style={styles.button} onPress={handlePress}>
+    <Pressable style={styles.item} onPress={handlePress}>
       <XIcon style={styles.icon} size={24} />
     </Pressable>
   );
@@ -32,7 +29,6 @@ const styles = StyleSheet.create((theme) => ({
   root: {
     flexDirection: "row",
     justifyContent: "space-between",
-    marginBottom: theme.margin.l,
   },
 
   left: {
@@ -40,7 +36,7 @@ const styles = StyleSheet.create((theme) => ({
     marginLeft: theme.padding.x,
   },
 
-  button: {
+  item: {
     padding: theme.padding.y,
   },
 

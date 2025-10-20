@@ -6,7 +6,7 @@ import { StyleSheet } from "react-native-unistyles";
 
 const shared = {
   fonts: {
-    primary: 16,
+    base: 16,
   },
   padding: {
     x: 10,
@@ -15,6 +15,7 @@ const shared = {
   margin: {
     s: 16,
     m: 32,
+    l: 64,
   },
   border: {
     default: 1,
@@ -31,14 +32,14 @@ const lightTheme: Unitheme = {
   colors: {
     text: {
       primary: "rgb(7, 7, 7)",
-      // secondary: "rgb(7, 7, 7)",
+      secondary: "rgb(80, 80, 80)",
     },
     background: {
       primary: "rgb(252, 252, 252)",
       secondary: "rgb(237, 237, 237)",
-      input: "rgb(247, 247, 247)",
+      input: "rgb(240, 240, 240)",
     },
-    border: "rgb(222, 222, 222)",
+    border: "rgb(210, 210, 210)",
     button: {
       text: "rgb(252, 252, 252)",
       background: "rgb(7, 7, 7)",
@@ -57,7 +58,7 @@ const darkTheme: Unitheme = {
   colors: {
     text: {
       primary: "rgb(221, 221, 221)",
-      // secondary: "rgb(221, 221, 221)",
+      secondary: "rgb(160, 160, 180)",
     },
     background: {
       primary: "rgb(18, 18, 18)",
@@ -80,7 +81,7 @@ type Unitheme = {
   colors: {
     text: {
       primary: string;
-      // secondary: string;
+      secondary: string;
     };
     background: {
       primary: string;
@@ -94,7 +95,7 @@ type Unitheme = {
     };
   };
   fonts: {
-    primary: number;
+    base: number;
   };
   padding: {
     x: number;
@@ -103,6 +104,7 @@ type Unitheme = {
   margin: {
     s: number;
     m: number;
+    l: number;
   };
   border: {
     default: number;

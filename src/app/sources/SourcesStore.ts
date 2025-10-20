@@ -3,13 +3,26 @@ import { createContext, useContext } from "react";
 
 export class SourcesStore {
   sources: Sources = [];
+  contacts: Contacts = [];
 
   constructor() {
     makeAutoObservable(this);
   }
 
+  setContacts = (contacts: Contacts) => {
+    this.contacts = contacts;
+  };
+
+  clearContacts = () => {
+    this.contacts = [];
+  };
+
   setSources = (sources: Sources) => {
     this.sources = sources;
+  };
+
+  clearSources = () => {
+    this.sources = [];
   };
 }
 
@@ -25,7 +38,23 @@ export const useSourcesStore = (): SourcesStore => {
 
 export type Source = {
   source_id: string;
-  title: string;
+  user_id: string;
+  name: string;
+  phone: string;
+  abbr: string;
+  color: string;
 };
 
 export type Sources = Source[];
+
+export type Contact = {
+  contact_id: string;
+  contact_name: string;
+  user_id: string;
+  name: string;
+  phone: string;
+  abbr: string;
+  color: string;
+};
+
+export type Contacts = Contact[];

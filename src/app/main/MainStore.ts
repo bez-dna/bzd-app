@@ -1,7 +1,9 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { makeAutoObservable, runInAction } from "mobx";
 import { createContext, useContext } from "react";
+
 import { API } from "../../api/Api";
+import { I18nStore } from "../../i18n/I18nStore";
 
 const JWT = "jwt";
 
@@ -12,12 +14,13 @@ export class MainStore {
   user: User | null = null;
 
   api: API;
+  i18n: I18nStore;
 
   constructor() {
     makeAutoObservable(this);
 
-    // this.authStore = new AuthStore(this);
     this.api = new API(this);
+    this.i18n = new I18nStore(this);
   }
 
   initialize = async () => {
@@ -65,4 +68,7 @@ export const useMainStore = (): MainStore => {
 
 type User = {
   user_id: string;
+  name: string;
+  abbr: string;
+  color: string;
 };

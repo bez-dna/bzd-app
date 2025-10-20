@@ -2,8 +2,8 @@ import { observer } from "mobx-react-lite";
 import { useState } from "react";
 import { Pressable, Text, TextInput, View } from "react-native";
 import { StyleSheet } from "react-native-unistyles";
+
 import { useAPI } from "../../api/Api";
-import { themeStyles } from "../../theme/Theme";
 
 export const NewTopic = observer(() => {
   const api = useAPI();
@@ -19,14 +19,14 @@ export const NewTopic = observer(() => {
   return (
     <View>
       <TextInput
-        style={[themeStyles.input, styles.input]}
+        style={styles.input}
         value={form.title}
         placeholder="New topic.."
         onChangeText={(title) => setForm({ ...form, title })}
       />
 
       <Pressable style={styles.submit} onPress={handleSubmit}>
-        <Text style={[themeStyles.button]}>Save</Text>
+        <Text>Save</Text>
       </Pressable>
     </View>
   );
