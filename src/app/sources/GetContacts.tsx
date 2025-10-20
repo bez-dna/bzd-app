@@ -1,9 +1,8 @@
 import { Pressable, Text, View } from "react-native";
 import Contacts from "react-native-contacts";
 import { StyleSheet } from "react-native-unistyles";
-
-import { useI18n } from "../../i18n/I18nStore";
 import { useAPI } from "../../api/Api";
+import { useI18n } from "../../i18n/I18nStore";
 import { useSourcesStore } from "./SourcesStore";
 
 // TBD: проверка прав не работает на iOS https://github.com/morenoh149/react-native-contacts/issues/765

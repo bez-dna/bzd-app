@@ -1,8 +1,7 @@
 import { Pressable, Text, View } from "react-native";
 import { StyleSheet } from "react-native-unistyles";
-
-import { useMainStore } from "../main/MainStore";
 import { useI18n } from "../../i18n/I18nStore";
+import { useMainStore } from "../main/MainStore";
 
 export const User = () => {
   const mainStore = useMainStore();

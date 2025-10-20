@@ -1,17 +1,17 @@
+import { useFocusEffect } from "@react-navigation/native";
 import { observer } from "mobx-react-lite";
 import { useCallback } from "react";
 import { ScrollView, Text, View } from "react-native";
 import { StyleSheet } from "react-native-unistyles";
-import { useFocusEffect } from "@react-navigation/native";
 
 import { useAPI } from "../../api/Api";
-import { Header } from "./Header";
-import { useSourcesStore } from "./SourcesStore";
 import { useI18n } from "../../i18n/I18nStore";
-import { User } from "./User";
+import { GetContacts } from "./GetContacts";
+import { Header } from "./Header";
 import { SourcesListContact } from "./SourcesListContact";
 import { SourcesListSource } from "./SourcesListSource";
-import { GetContacts } from "./GetContacts";
+import { useSourcesStore } from "./SourcesStore";
+import { User } from "./User";
 
 export const SourcesList = observer(() => {
   const api = useAPI();

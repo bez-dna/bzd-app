@@ -25,11 +25,13 @@ export const App = () => {
   }, [mainStore.initialize]);
 
   return (
-    <MainStoreContext.Provider value={mainStore}>
-      <Layout>
-        <Navigation theme={theme.navigation} />
-      </Layout>
-    </MainStoreContext.Provider>
+    <StrictMode>
+      <MainStoreContext.Provider value={mainStore}>
+        <Layout>
+          <Navigation theme={theme.navigation} />
+        </Layout>
+      </MainStoreContext.Provider>
+    </StrictMode>
   );
 };
 
