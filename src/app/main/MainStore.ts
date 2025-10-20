@@ -68,4 +68,7 @@ export const useMainStore = (): MainStore => {
 
 type User = {
   user_id: string;
+  name: string;
+  abbr: string;
+  color: string;
 };

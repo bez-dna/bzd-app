@@ -1,5 +1,5 @@
 import { observer } from "mobx-react-lite";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { Pressable, Text, TextInput, View } from "react-native";
 import { StyleSheet } from "react-native-unistyles";
 import { useAPI } from "../../api/Api";
@@ -17,8 +17,12 @@ export const Join = observer(() => {
 
   const handleSubmit = async () => {
     const data = await api.auth.join(form);
-    authStore.setVerificationId(data.verification.verification_id);
+    authStore.setJoinStep(data.verification.verification_id, data.is_new);
   };
+
+  const disabled = useMemo(() => {
+    return form.phone_number.length < 11;
+  }, [form.phone_number.length]);
 
   return (
     <View style={[styles.root]}>
@@ -34,8 +38,8 @@ export const Join = observer(() => {
         onChangeText={(phone_number) => setForm({ ...form, phone_number })}
       />
 
-      <Pressable onPress={handleSubmit}>
-        <Text style={styles.button}>{t("auth.join.button")}</Text>
+      <Pressable onPress={handleSubmit} disabled={disabled}>
+        <Text style={styles.button(disabled)}>{t("auth.join.button")}</Text>
       </Pressable>
     </View>
   );
@@ -48,6 +52,7 @@ const styles = StyleSheet.create((theme) => ({
   },
 
   title: {
+    color: theme.colors.text.primary,
     fontSize: theme.fonts.base * 2,
     lineHeight: theme.fonts.base * 2,
     height: theme.fonts.base * 2,
@@ -56,12 +61,14 @@ const styles = StyleSheet.create((theme) => ({
   },
 
   desc: {
+    color: theme.colors.text.primary,
     fontSize: theme.fonts.base,
     marginBottom: theme.margin.m,
     maxWidth: "85%",
   },
 
   input: {
+    color: theme.colors.text.primary,
     fontSize: theme.fonts.base * 1.5,
     lineHeight: 0,
     fontWeight: 500,
@@ -72,7 +79,7 @@ const styles = StyleSheet.create((theme) => ({
     marginBottom: theme.margin.s,
   },
 
-  button: {
+  button: (disabled: boolean) => ({
     alignSelf: "flex-start",
     color: theme.colors.button.text,
     backgroundColor: theme.colors.button.background,
@@ -81,5 +88,6 @@ const styles = StyleSheet.create((theme) => ({
     paddingHorizontal: theme.padding.x * 2,
     paddingVertical: theme.padding.y,
     borderRadius: 999,
-  },
+    opacity: disabled ? 0.2 : 1,
+  }),
 }));

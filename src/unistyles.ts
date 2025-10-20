@@ -32,7 +32,7 @@ const lightTheme: Unitheme = {
   colors: {
     text: {
       primary: "rgb(7, 7, 7)",
-      // secondary: "rgb(7, 7, 7)",
+      secondary: "rgb(80, 80, 80)",
     },
     background: {
       primary: "rgb(252, 252, 252)",
@@ -58,7 +58,7 @@ const darkTheme: Unitheme = {
   colors: {
     text: {
       primary: "rgb(221, 221, 221)",
-      // secondary: "rgb(221, 221, 221)",
+      secondary: "rgb(160, 160, 180)",
     },
     background: {
       primary: "rgb(18, 18, 18)",
@@ -81,6 +81,7 @@ type Unitheme = {
   colors: {
     text: {
       primary: string;
+      secondary: string;
     };
     background: {
       primary: string;

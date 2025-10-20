@@ -1,5 +1,5 @@
 import { observer } from "mobx-react-lite";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { Pressable, Text, TextInput, View } from "react-native";
 import { StyleSheet } from "react-native-unistyles";
 
@@ -14,8 +14,9 @@ export const Complete = observer(() => {
   const authStore = useAuthStore();
   const mainStore = useMainStore();
 
-  const [form, setForm] = useState({
+  const [form, setForm] = useState<{ code: string; name: string | null }>({
     code: "",
+    name: null,
   });
 
   const handleSubmit = async () => {
@@ -29,19 +30,38 @@ export const Complete = observer(() => {
     await mainStore.updateJwt(data.jwt);
   };
 
+  const disabled = useMemo(() => {
+    const nameLength = form.name !== null ? form.name.length < 2 : false;
+
+    return form.code.length < 4 || nameLength;
+  }, [form.code.length, form.name]);
+
   return (
     <View style={[styles.root]}>
-      <Text style={styles.desc}>{t("auth.complete.desc")}</Text>
+      <Text style={styles.desc}>{t("auth.complete.code.desc")}</Text>
 
       <TextInput
         style={styles.input}
         value={form.code}
         placeholder="0000"
+        maxLength={4}
         onChangeText={(code) => setForm({ ...form, code })}
       />
 
-      <Pressable onPress={handleSubmit}>
-        <Text style={styles.button}>{t("auth.complete.button")}</Text>
+      {authStore.isNew && (
+        <>
+          <Text style={styles.desc}>{t("auth.complete.name.desc")}</Text>
+
+          <TextInput
+            style={styles.input}
+            value={form.name ?? ""}
+            onChangeText={(name) => setForm({ ...form, name })}
+          />
+        </>
+      )}
+
+      <Pressable onPress={handleSubmit} disabled={disabled}>
+        <Text style={styles.button(disabled)}>{t("auth.complete.button")}</Text>
       </Pressable>
     </View>
   );
@@ -51,16 +71,19 @@ const styles = StyleSheet.create((theme) => ({
   root: {
     paddingHorizontal: theme.padding.x,
     marginTop: theme.margin.l,
+    // paddingTop
   },
 
   desc: {
-    marginTop: theme.margin.s + theme.fonts.base * 2,
+    color: theme.colors.text.primary,
+    marginTop: theme.margin.m,
     fontSize: theme.fonts.base,
-    marginBottom: theme.margin.m,
+    marginBottom: theme.margin.s,
     maxWidth: "85%",
   },
 
   input: {
+    color: theme.colors.text.primary,
     fontSize: theme.fonts.base * 1.5,
     lineHeight: 0,
     fontWeight: 500,
@@ -71,7 +94,7 @@ const styles = StyleSheet.create((theme) => ({
     marginBottom: theme.margin.s,
   },
 
-  button: {
+  button: (disabled: boolean) => ({
     alignSelf: "flex-start",
     color: theme.colors.button.text,
     backgroundColor: theme.colors.button.background,
@@ -80,5 +103,6 @@ const styles = StyleSheet.create((theme) => ({
     paddingHorizontal: theme.padding.x * 2,
     paddingVertical: theme.padding.y,
     borderRadius: 999,
-  },
+    opacity: disabled ? 0.2 : 1,
+  }),
 }));

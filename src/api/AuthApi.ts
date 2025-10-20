@@ -28,6 +28,9 @@ type MeResponse = {
 
 type MeResponseUser = {
   user_id: string;
+  name: string;
+  abbr: string;
+  color: string;
 };
 
 type JoinRequest = {
@@ -36,6 +39,7 @@ type JoinRequest = {
 
 type JoinResponse = {
   verification: JoinResponseVerification;
+  is_new: boolean;
 };
 
 type JoinResponseVerification = {
@@ -45,6 +49,7 @@ type JoinResponseVerification = {
 type CompleteRequest = {
   verification_id: string;
   code: string;
+  name: string | null;
 };
 
 type CompleteResponse = {

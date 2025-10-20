@@ -3,6 +3,7 @@ import { createContext, useContext } from "react";
 
 export class AuthStore {
   verificationId: string | null = null;
+  isNew: boolean = false;
 
   constructor() {
     makeAutoObservable(this);
@@ -12,12 +13,13 @@ export class AuthStore {
     return this.verificationId !== null;
   }
 
-  clearVerificationId = () => {
+  clearJoinStep = () => {
     this.verificationId = null;
   };
 
-  setVerificationId = (verificationId: string) => {
+  setJoinStep = (verificationId: string, isNew: boolean) => {
     this.verificationId = verificationId;
+    this.isNew = isNew;
   };
 }
 

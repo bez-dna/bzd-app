@@ -1,3 +1,5 @@
+/* Заглушка на 1-2 строки
+ */
 export const dict = {
   translation: {
     auth: {
@@ -7,8 +9,36 @@ export const dict = {
         button: "Join",
       },
       complete: {
-        desc: "TBD: DESC",
+        code: {
+          desc: "TBD: DESC",
+        },
+        name: {
+          desc: "TBD: DESC",
+        },
         button: "Confirm",
+      },
+    },
+
+    sources: {
+      header: {
+        logout: "Logout",
+      },
+
+      user: {
+        desc: "it's you",
+      },
+
+      sources: {
+        title: "Sources",
+      },
+
+      contacts: {
+        title: "Contacts",
+        button: "Add",
+        get: {
+          desc: "TBD: Allow contacts access",
+          button: "TBD: Allow",
+        },
       },
     },
 

@@ -13,9 +13,9 @@ export const AuthScreen = observer(() => {
   useFocusEffect(
     useCallback(() => {
       return () => {
-        authStore.clearVerificationId();
+        authStore.clearJoinStep();
       };
-    }, [authStore.clearVerificationId]),
+    }, [authStore.clearJoinStep]),
   );
 
   return (
