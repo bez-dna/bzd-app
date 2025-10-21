@@ -55,6 +55,8 @@ const styles = StyleSheet.create((theme) => ({
     fontSize: theme.fonts.base,
     marginBottom: theme.margin.s,
     maxWidth: "85%",
+    marginHorizontal: "auto",
+    textAlign: "center",
   },
 
   press: {
