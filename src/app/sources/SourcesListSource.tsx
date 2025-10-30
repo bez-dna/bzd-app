@@ -1,11 +1,18 @@
-import { Text, View } from "react-native";
+import { Pressable, Text, View } from "react-native";
 import { StyleSheet } from "react-native-unistyles";
 
 import type { Source } from "./SourcesStore";
+import { useNavigation } from "@react-navigation/native";
 
 export const SourcesListSource = ({ source }: { source: Source }) => {
+  const nav = useNavigation();
+
+  const handlePress = () => {
+    nav.navigate("Source", { source_id: source.source_id });
+  };
+
   return (
-    <View style={styles.source}>
+    <Pressable style={styles.source} onPress={handlePress}>
       <View style={styles.image(source.color)}>
         <Text style={styles.abbr}>{source.abbr}</Text>
       </View>
@@ -17,7 +24,7 @@ export const SourcesListSource = ({ source }: { source: Source }) => {
           </Text>
         </View>
       </View>
-    </View>
+    </Pressable>
   );
 };
 

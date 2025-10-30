@@ -1,5 +1,5 @@
 import { useNavigation } from "@react-navigation/native";
-import { XIcon } from "lucide-react-native";
+import { ChevronLeftIcon } from "lucide-react-native";
 import { Pressable, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { StyleSheet } from "react-native-unistyles";
@@ -8,22 +8,22 @@ export const Header = () => {
   return (
     <SafeAreaView style={styles.root} edges={["top", "right", "left"]}>
       <View style={styles.left}>
-        <BacktoMessages />
+        <BackToSources />
       </View>
     </SafeAreaView>
   );
 };
 
-const BacktoMessages = () => {
+const BackToSources = () => {
   const nav = useNavigation();
 
   const handlePress = () => {
-    nav.navigate("MessagesStack");
+    nav.goBack();
   };
 
   return (
     <Pressable style={styles.button} onPress={handlePress}>
-      <XIcon style={styles.icon} size={24} />
+      <ChevronLeftIcon style={styles.icon} size={24} />
     </Pressable>
   );
 };

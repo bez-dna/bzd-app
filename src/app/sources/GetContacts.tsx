@@ -66,7 +66,6 @@ const styles = StyleSheet.create((theme) => ({
   button: (disabled: boolean) => ({
     color: theme.colors.button.text,
     backgroundColor: theme.colors.button.background,
-    fontSize: theme.fonts.base * 0.875,
     fontWeight: 700,
     paddingHorizontal: theme.padding.x * 2,
     paddingVertical: theme.padding.y,

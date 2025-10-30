@@ -1,16 +1,23 @@
 import { useNavigation } from "@react-navigation/native";
 import { Pressable, Text, View } from "react-native";
 import { StyleSheet } from "react-native-unistyles";
+import { SafeAreaView } from "react-native-safe-area-context";
+
 import { useI18n } from "../../i18n/I18nStore";
+import { Warn } from "../main/Warn";
 
 export const Header = () => {
   return (
-    <View style={styles.root}>
-      <View style={styles.right}>
-        <NewMessage />
-        <Sources />
-      </View>
-    </View>
+    <>
+      <SafeAreaView style={styles.root} edges={["top", "right", "left"]}>
+        <View style={styles.right}>
+          <NewMessage />
+          <Sources />
+        </View>
+      </SafeAreaView>
+
+      <Warn />
+    </>
   );
 };
 
@@ -34,7 +41,7 @@ const Sources = () => {
   const { t } = useI18n();
 
   const handlePress = () => {
-    nav.navigate("Sources");
+    nav.navigate("SourcesStack");
   };
 
   return (
@@ -63,7 +70,6 @@ const styles = StyleSheet.create((theme) => ({
   label: {
     lineHeight: 24,
     color: theme.colors.text.primary,
-    fontSize: theme.fonts.base * 0.875,
     fontWeight: 700,
   },
 

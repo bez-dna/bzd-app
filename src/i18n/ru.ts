@@ -48,5 +48,13 @@ export const dict: Dict = {
         sources: "Источники",
       },
     },
+
+    new_message: {
+      button: "Запостить",
+    },
+
+    warn: {
+      text: "Что-то пошло не так..",
+    },
   },
 };

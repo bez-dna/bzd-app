@@ -35,8 +35,6 @@ export class API {
         config.headers.Authorization = `Bearer ${this.mainStore.jwt}`;
       }
 
-      //   config.headers.Locale = i18nStore.locale;
-
       return config;
     });
 
@@ -44,9 +42,8 @@ export class API {
       (response) => {
         return response;
       },
-      (error) => {
-        // biome-ignore lint/suspicious/noConsole: нужно сделать пропагацию ошибок отсюда в mainStore и сделать аккуратный блок с дисплеем этой ошибки куда-то в UI без тостов
-        console.log(error);
+      (_) => {
+        this.mainStore.setError();
       },
     );
   }

@@ -90,7 +90,6 @@ const styles = StyleSheet.create((theme) => ({
 
   phone_number: {
     color: theme.colors.text.primary,
-    fontSize: theme.fonts.base * 0.875,
   },
 
   action: {
@@ -99,7 +98,6 @@ const styles = StyleSheet.create((theme) => ({
 
   button: (disabled: boolean) => ({
     color: theme.colors.button.text,
-    fontSize: theme.fonts.base * 0.875,
     backgroundColor: theme.colors.button.background,
     fontWeight: 700,
     paddingHorizontal: theme.padding.x,

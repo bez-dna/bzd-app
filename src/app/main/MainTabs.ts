@@ -1,15 +1,17 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+
 import { MessagesStack } from "../messages/MessagesStack";
-import { SourcesScreen } from "../sources/SourcesScreen";
+import { SourcesStack } from "../sources/SourcesStack";
 
 export const MainTabs = createBottomTabNavigator({
-  initialRouteName: "Main",
+  initialRouteName: "MessagesStack",
   screens: {
-    Main: {
+    MessagesStack: {
       screen: MessagesStack,
     },
-    Sources: {
-      screen: SourcesScreen,
+
+    SourcesStack: {
+      screen: SourcesStack,
     },
   },
 

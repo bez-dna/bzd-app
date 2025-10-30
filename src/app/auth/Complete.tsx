@@ -98,7 +98,6 @@ const styles = StyleSheet.create((theme) => ({
     alignSelf: "flex-start",
     color: theme.colors.button.text,
     backgroundColor: theme.colors.button.background,
-    fontSize: theme.fonts.base * 0.875,
     fontWeight: 700,
     paddingHorizontal: theme.padding.x * 2,
     paddingVertical: theme.padding.y,

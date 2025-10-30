@@ -13,32 +13,7 @@ export class SourcesAPI {
     return (await this.api.client.post<CreateSourceResponse>("/sources", data))
       .data;
   };
-
-  get_sources = async (): Promise<GetSourcesResponse> => {
-    return (await this.api.client.get<GetSourcesResponse>("/sources")).data;
-  };
 }
-
-type GetSourcesResponse = {
-  sources: {
-    source_id: string;
-    user_id: string;
-    name: string;
-    phone: string;
-    abbr: string;
-    color: string;
-  }[];
-
-  contacts: {
-    contact_id: string;
-    contact_name: string;
-    user_id: string;
-    name: string;
-    phone: string;
-    abbr: string;
-    color: string;
-  }[];
-};
 
 type CreateSourceRequest = {
   user_id: string;
