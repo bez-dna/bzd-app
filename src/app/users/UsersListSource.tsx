@@ -1,26 +1,27 @@
 import { Pressable, Text, View } from "react-native";
 import { StyleSheet } from "react-native-unistyles";
-
-import type { Source } from "./SourcesStore";
 import { useNavigation } from "@react-navigation/native";
 
-export const SourcesListSource = ({ source }: { source: Source }) => {
+import type { Source } from "./UsersStore";
+
+export const UsersListSource = ({ source }: { source: Source }) => {
   const nav = useNavigation();
+  const user = source.user;
 
   const handlePress = () => {
-    nav.navigate("Source", { source_id: source.source_id });
+    nav.navigate("User", { user_id: source.user.user_id });
   };
 
   return (
     <Pressable style={styles.source} onPress={handlePress}>
-      <View style={styles.image(source.color)}>
-        <Text style={styles.abbr}>{source.abbr}</Text>
+      <View style={styles.image(user.color)}>
+        <Text style={styles.abbr}>{user.abbr}</Text>
       </View>
 
       <View style={styles.qqq}>
         <View>
           <Text style={[styles.label]} numberOfLines={1}>
-            {source.name}
+            {user.name}
           </Text>
         </View>
       </View>

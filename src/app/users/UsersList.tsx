@@ -8,37 +8,29 @@ import { useAPI } from "../../api/Api";
 import { useI18n } from "../../i18n/I18nStore";
 import { GetContacts } from "./GetContacts";
 import { Header } from "./Header";
-import { SourcesListContact } from "./SourcesListContact";
-import { SourcesListSource } from "./SourcesListSource";
-import { useSourcesStore } from "./SourcesStore";
+import { UsersListContact } from "./UsersListContact";
+import { UsersListSource } from "./UsersListSource";
+import { useUsersStore } from "./UsersStore";
 import { User } from "./User";
 
-export const SourcesList = observer(() => {
+export const UsersList = observer(() => {
   const api = useAPI();
   const { t } = useI18n();
-  const sourcesStore = useSourcesStore();
+  const sourcesStore = useUsersStore();
 
   useFocusEffect(
     useCallback(() => {
       (async () => {
-        const { sources, contacts } = await api.sources.get_sources();
-        sourcesStore.setSources(sources);
-        sourcesStore.setContacts(contacts);
+        const { sources, contacts } = await api.users.get_users();
+        sourcesStore.setData(sources, contacts);
 
         // TBD: нужно убрать аналогичные вызовы в SourcesListContact и GetContacts
       })();
 
       return () => {
-        sourcesStore.clearSources();
-        sourcesStore.clearContacts();
+        sourcesStore.clearData();
       };
-    }, [
-      api.sources.get_sources,
-      sourcesStore.clearSources,
-      sourcesStore.setSources,
-      sourcesStore.setContacts,
-      sourcesStore.clearContacts,
-    ]),
+    }, [api.users.get_users, sourcesStore.clearData, sourcesStore.setData]),
   );
 
   return (
@@ -52,7 +44,7 @@ export const SourcesList = observer(() => {
           <Text style={styles.title}>{t("sources.sources.title")}</Text>
 
           {sourcesStore.sources.map((source) => (
-            <SourcesListSource key={source.source_id} source={source} />
+            <UsersListSource key={source.source_id} source={source} />
           ))}
         </View>
       )}
@@ -62,7 +54,7 @@ export const SourcesList = observer(() => {
           <Text style={styles.title}>{t("sources.contacts.title")}</Text>
 
           {sourcesStore.contacts.map((contact) => (
-            <SourcesListContact key={contact.contact_id} contact={contact} />
+            <UsersListContact key={contact.contact_id} contact={contact} />
           ))}
         </View>
       )}

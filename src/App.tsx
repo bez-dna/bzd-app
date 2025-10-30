@@ -11,7 +11,7 @@ import { Layout } from "./layout/Layout";
 import "./unistyles";
 import { MainTabs } from "./app/main/MainTabs";
 import type { MessagesStack } from "./app/messages/MessagesStack";
-import { SourcesStack } from "./app/sources/SourcesStack";
+import { UsersStack } from "./app/users/UsersStack";
 
 const Navigation = createStaticNavigation(MainTabs);
 
@@ -39,7 +39,7 @@ export const App = () => {
 type MainTabsParamList = StaticParamList<typeof MainTabs>;
 
 type MessagesStackParamList = StaticParamList<typeof MessagesStack>;
-type SourcesStackParamList = StaticParamList<typeof SourcesStack>;
+type SourcesStackParamList = StaticParamList<typeof UsersStack>;
 
 declare global {
   namespace ReactNavigation {

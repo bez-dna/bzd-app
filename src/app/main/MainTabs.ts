@@ -1,7 +1,7 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
 import { MessagesStack } from "../messages/MessagesStack";
-import { SourcesStack } from "../sources/SourcesStack";
+import { UsersStack } from "../users/UsersStack";
 
 export const MainTabs = createBottomTabNavigator({
   initialRouteName: "MessagesStack",
@@ -10,8 +10,8 @@ export const MainTabs = createBottomTabNavigator({
       screen: MessagesStack,
     },
 
-    SourcesStack: {
-      screen: SourcesStack,
+    UsersStack: {
+      screen: UsersStack,
     },
   },
 

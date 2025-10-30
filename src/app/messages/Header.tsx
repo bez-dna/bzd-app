@@ -41,7 +41,7 @@ const Sources = () => {
   const { t } = useI18n();
 
   const handlePress = () => {
-    nav.navigate("SourcesStack");
+    nav.navigate("UsersStack");
   };
 
   return (

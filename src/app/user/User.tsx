@@ -6,33 +6,33 @@ import { observer } from "mobx-react-lite";
 
 import { useAPI } from "../../api/Api";
 import { useI18n } from "../../i18n/I18nStore";
-import { useSourceStore } from "./SourceStore";
+import { useUserStore } from "./UserStore";
 import { Warn } from "../main/Warn";
 import { Header } from "./Header";
 
-export const Source = observer(({ source_id }: { source_id: string }) => {
+export const Source = observer(({ user_id }: { user_id: string }) => {
   const api = useAPI();
   const { t: _ } = useI18n();
-  const sourceStore = useSourceStore();
+  const sourceStore = useUserStore();
 
   useFocusEffect(
     useCallback(() => {
       (async () => {
-        const { source, user } = await api.sources.get_source({
-          source_id,
+        const { user, ...source } = await api.users.get_user({
+          user_id,
         });
 
-        sourceStore.setSource(source, user);
+        sourceStore.setData(source, user);
       })();
 
       return () => {
-        sourceStore.clearSource();
+        sourceStore.clearData();
       };
     }, [
-      api.sources.get_source,
-      source_id,
-      sourceStore.clearSource,
-      sourceStore.setSource,
+      api.users.get_user,
+      user_id,
+      sourceStore.clearData,
+      sourceStore.setData,
     ]),
   );
 

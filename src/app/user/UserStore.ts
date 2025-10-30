@@ -1,7 +1,7 @@
 import { makeAutoObservable } from "mobx";
 import { createContext, useContext } from "react";
 
-export class SourceStore {
+export class UserStore {
   source: Source | null = null;
   user: User | null = null;
 
@@ -9,25 +9,25 @@ export class SourceStore {
     makeAutoObservable(this);
   }
 
-  setSource = (source: Source, user: User) => {
+  setData = (source: Source, user: User) => {
     this.source = source;
     this.user = user;
   };
 
-  clearSource = () => {
+  clearData = () => {
     this.source = null;
     this.user = null;
   };
 }
 
-export const SourceStoreContext = createContext<SourceStore | null>(null);
+export const UserStoreContext = createContext<UserStore | null>(null);
 
-export const useSourceStore = (): SourceStore => {
-  const sourceStore = useContext(SourceStoreContext);
+export const useUserStore = (): UserStore => {
+  const userStore = useContext(UserStoreContext);
 
-  if (sourceStore === null) throw new Error("PANIC!");
+  if (userStore === null) throw new Error("PANIC!");
 
-  return sourceStore;
+  return userStore;
 };
 
 export type Source = {

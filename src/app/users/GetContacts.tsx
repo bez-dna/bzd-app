@@ -3,13 +3,13 @@ import Contacts from "react-native-contacts";
 import { StyleSheet } from "react-native-unistyles";
 import { useAPI } from "../../api/Api";
 import { useI18n } from "../../i18n/I18nStore";
-import { useSourcesStore } from "./SourcesStore";
+import { useUsersStore } from "./UsersStore";
 
 // TBD: проверка прав не работает на iOS https://github.com/morenoh149/react-native-contacts/issues/765
 // нужно подключить другую либу для пермиссий чтобы блок не показывался постоянно.
 
 export const GetContacts = () => {
-  const sourcesStore = useSourcesStore();
+  const sourcesStore = useUsersStore();
   const { t } = useI18n();
   const api = useAPI();
 
@@ -28,7 +28,7 @@ export const GetContacts = () => {
 
     const { sources, contacts } = await api.sources.get_sources();
 
-    sourcesStore.setSources(sources);
+    sourcesStore.setData(sources);
     sourcesStore.setContacts(contacts);
   };
 
