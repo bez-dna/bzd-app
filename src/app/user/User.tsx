@@ -1,57 +1,59 @@
-import { useFocusEffect } from "@react-navigation/native";
-import { useCallback } from "react";
 import { Text, View } from "react-native";
 import { StyleSheet } from "react-native-unistyles";
-import { observer } from "mobx-react-lite";
 
-import { useAPI } from "../../api/Api";
-import { useI18n } from "../../i18n/I18nStore";
-import { useUserStore } from "./UserStore";
-import { Warn } from "../main/Warn";
-import { Header } from "./Header";
+import type { UserModel } from "./UserStore";
 
-export const Source = observer(({ user_id }: { user_id: string }) => {
-  const api = useAPI();
-  const { t: _ } = useI18n();
-  const sourceStore = useUserStore();
-
-  useFocusEffect(
-    useCallback(() => {
-      (async () => {
-        const { user, ...source } = await api.users.get_user({
-          user_id,
-        });
-
-        sourceStore.setData(source, user);
-      })();
-
-      return () => {
-        sourceStore.clearData();
-      };
-    }, [
-      api.users.get_user,
-      user_id,
-      sourceStore.clearData,
-      sourceStore.setData,
-    ]),
-  );
-
+export const User = ({ user }: { user: UserModel }) => {
   return (
-    <View>
-      <Header />
+    <View style={styles.root}>
+      <View style={styles.image(user.color)}>
+        <Text style={styles.abbr}>{user.abbr}</Text>
+      </View>
 
-      <Warn />
-
-      <Text style={styles.text}>SOURCE {sourceStore.user?.name}</Text>
+      <View style={styles.user}>
+        <Text style={[styles.name]}>{user.name}</Text>
+      </View>
     </View>
   );
-});
+};
 
 const styles = StyleSheet.create((theme) => ({
-  root: {},
+  root: {
+    // justifyContent: "center",
+    alignItems: "center",
+    // flexDirection: "row",
+    // paddingHorizontal: theme.padding.x,
+    // marginBottom: theme.margin.m,
+    // alignItems: "center",
+    // backgroundColor: "yellow",
+  },
 
-  text: {
-    paddingHorizontal: theme.padding.x,
+  image: (backgroundColor: string) => ({
+    width: 60,
+    height: 60,
+    borderRadius: 999,
+    backgroundColor,
+    marginBottom: theme.margin.s,
+    alignItems: "center",
+    justifyContent: "center",
+  }),
+
+  user: {
+    // backgroundColor: "pink",
+  },
+
+  abbr: {
+    fontWeight: 700,
+    color: theme.colors.text.secondary,
+  },
+
+  name: {
+    fontWeight: 900,
     color: theme.colors.text.primary,
+    fontSize: theme.fonts.base * 2,
+  },
+
+  desc: {
+    color: theme.colors.text.secondary,
   },
 }));

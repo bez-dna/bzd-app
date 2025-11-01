@@ -3,7 +3,7 @@ import type { StaticScreenProps } from "@react-navigation/native";
 
 import { AuthScreen } from "../auth/AuthScreen";
 import { useMainStore } from "../main/MainStore";
-import { Source } from "./User";
+import { UserDetails } from "./UserDetails";
 import { UserStore, UserStoreContext } from "./UserStore";
 
 type Props = StaticScreenProps<{
@@ -19,7 +19,7 @@ export const UserScreen = observer(({ route }: Props) => {
 
   return (
     <UserStoreContext.Provider value={new UserStore()}>
-      <Source user_id={user_id} />
+      <UserDetails user_id={user_id} />
     </UserStoreContext.Provider>
   );
 });

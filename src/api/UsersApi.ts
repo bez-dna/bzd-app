@@ -55,5 +55,15 @@ type GetUserResponse = {
   user: {
     user_id: string;
     name: string;
+    color: string;
+    abbr: string;
   };
+
+  topics: {
+    topic_id: string;
+    title: string;
+    topic_user: {
+      topic_user_id: string;
+    } | null;
+  }[];
 };
