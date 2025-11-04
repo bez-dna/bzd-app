@@ -1,5 +1,6 @@
 import { Pressable, Text, View } from "react-native";
 import { StyleSheet } from "react-native-unistyles";
+
 import { useI18n } from "../../i18n/I18nStore";
 import { useMainStore } from "../main/MainStore";
 
