@@ -10,7 +10,7 @@ import { useUsersStore } from "./UsersStore";
 // нужно подключить другую либу для пермиссий чтобы блок не показывался постоянно.
 
 export const GetContacts = () => {
-  const sourcesStore = useUsersStore();
+  const store = useUsersStore();
   const { t } = useI18n();
   const api = useAPI();
 
@@ -27,10 +27,7 @@ export const GetContacts = () => {
       ),
     });
 
-    const { sources, contacts } = await api.sources.get_sources();
-
-    sourcesStore.setData(sources);
-    sourcesStore.setContacts(contacts);
+    await store.updateData();
   };
 
   return (

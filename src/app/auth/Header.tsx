@@ -15,7 +15,7 @@ const BacktoMessages = () => {
   const nav = useNavigation();
 
   const handlePress = () => {
-    nav.navigate("Main");
+    nav.navigate("MessagesStack");
   };
 
   return (
