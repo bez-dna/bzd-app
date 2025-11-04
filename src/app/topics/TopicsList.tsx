@@ -2,7 +2,9 @@ import { observer } from "mobx-react-lite";
 import { useEffect } from "react";
 import { FlatList, Text, View } from "react-native";
 import { StyleSheet } from "react-native-unistyles";
+
 import { useAPI } from "../../api/Api";
+import { Header } from "./Header";
 import { NewTopic } from "./NewTopic";
 import { type Topic, useTopicsStore } from "./TopicsStore";
 
@@ -18,18 +20,22 @@ export const TopicsList = observer(() => {
   }, [api.topics.get_topics, topicsStore.setTopics]);
 
   return (
-    <View style={styles.root}>
-      <FlatList
-        data={topicsStore.topics}
-        numColumns={2}
-        style={styles.list}
-        columnWrapperStyle={styles.row}
-        renderItem={({ item }) => <TopicsListItem topic={item} />}
-        keyExtractor={(it) => it.topic_id}
-      />
+    <>
+      <Header />
 
-      <NewTopic />
-    </View>
+      <View style={styles.root}>
+        <FlatList
+          data={topicsStore.topics}
+          numColumns={2}
+          style={styles.list}
+          columnWrapperStyle={styles.row}
+          renderItem={({ item }) => <TopicsListItem topic={item} />}
+          keyExtractor={(it) => it.topic_id}
+        />
+
+        <NewTopic />
+      </View>
+    </>
   );
 });
 

@@ -1,6 +1,8 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+
 import { MessageScreen } from "../message/MessageScreen";
-import { NewMessageStack } from "../new-message/NewMessageStack";
+import { CreateMessageScreen } from "../new-message/CreateMessageScreen";
+import { TopicsScreen } from "../topics/TopicsScreen";
 import { MessagesScreen } from "./MessagesScreen";
 
 export const MessagesStack = createNativeStackNavigator({
@@ -8,15 +10,20 @@ export const MessagesStack = createNativeStackNavigator({
 
   screens: {
     NewMessage: {
-      screen: NewMessageStack,
+      screen: CreateMessageScreen,
       options: {
-        animation: "fade_from_bottom",
+        presentation: "modal",
       },
+    },
+
+    Topics: {
+      screen: TopicsScreen,
     },
 
     Messages: {
       screen: MessagesScreen,
     },
+
     Message: {
       screen: MessageScreen,
     },

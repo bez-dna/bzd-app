@@ -16,6 +16,8 @@ export class MainStore {
   api: API;
   i18n: I18nStore;
 
+  error = false;
+
   constructor() {
     makeAutoObservable(this);
 
@@ -49,6 +51,14 @@ export class MainStore {
     runInAction(() => {
       this.user = data.user;
     });
+  };
+
+  setError = () => {
+    this.error = true;
+  };
+
+  clearError = () => {
+    this.error = false;
   };
 
   get isAuth(): boolean {

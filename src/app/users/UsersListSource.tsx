@@ -1,20 +1,27 @@
 import { Text, View } from "react-native";
 import { StyleSheet } from "react-native-unistyles";
 
-import type { Source } from "./SourcesStore";
+import { TopicsList } from "./TopicsList";
+import type { SourceModel } from "./UsersStore";
 
-export const SourcesListSource = ({ source }: { source: Source }) => {
+export const UsersListSource = ({ source }: { source: SourceModel }) => {
+  const user = source.user;
+
   return (
     <View style={styles.source}>
-      <View style={styles.image(source.color)}>
-        <Text style={styles.abbr}>{source.abbr}</Text>
+      <View style={styles.image(user.color)}>
+        <Text style={styles.abbr}>{user.abbr}</Text>
       </View>
 
       <View style={styles.qqq}>
-        <View>
-          <Text style={[styles.label]} numberOfLines={1}>
-            {source.name}
+        <View style={styles.user}>
+          <Text style={[styles.name]} numberOfLines={1}>
+            {user.name}
           </Text>
+        </View>
+
+        <View>
+          <TopicsList topics={source.topics} />
         </View>
       </View>
     </View>
@@ -40,10 +47,16 @@ const styles = StyleSheet.create((theme) => ({
   source: {
     flexDirection: "row",
     marginBottom: theme.margin.s,
-    alignItems: "center",
+    // alignItems: "center",
   },
 
-  label: {
+  user: {
+    // backgroundColor: "pink",
+    lineHeight: 20,
+    margin: 0,
+  },
+
+  name: {
     color: theme.colors.text.primary,
     fontSize: theme.fonts.base,
     fontWeight: 700,
@@ -52,5 +65,6 @@ const styles = StyleSheet.create((theme) => ({
   qqq: {
     flexBasis: 0,
     flexGrow: 1,
+    paddingTop: 10,
   },
 }));

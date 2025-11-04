@@ -2,6 +2,7 @@ import { observer } from "mobx-react-lite";
 import { useMemo, useState } from "react";
 import { Pressable, Text, TextInput, View } from "react-native";
 import { StyleSheet } from "react-native-unistyles";
+
 import { useAPI } from "../../api/Api";
 import { useI18n } from "../../i18n/I18nStore";
 import { useAuthStore } from "./AuthStore";
@@ -83,7 +84,6 @@ const styles = StyleSheet.create((theme) => ({
     alignSelf: "flex-start",
     color: theme.colors.button.text,
     backgroundColor: theme.colors.button.background,
-    fontSize: theme.fonts.base * 0.875,
     fontWeight: 700,
     paddingHorizontal: theme.padding.x * 2,
     paddingVertical: theme.padding.y,

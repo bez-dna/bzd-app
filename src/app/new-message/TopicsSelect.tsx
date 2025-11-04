@@ -2,6 +2,7 @@ import { useNavigation } from "@react-navigation/native";
 import { observer } from "mobx-react-lite";
 import { Pressable, Text, View } from "react-native";
 import { StyleSheet } from "react-native-unistyles";
+
 import { useNewMessageStore } from "./NewMessageStore";
 
 export const TopicsSelect = observer(() => {

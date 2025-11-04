@@ -7,6 +7,7 @@ import { StyleSheet } from "react-native-unistyles";
 const shared = {
   fonts: {
     base: 16,
+    main: 14,
   },
   padding: {
     x: 10,
@@ -96,6 +97,7 @@ type Unitheme = {
   };
   fonts: {
     base: number;
+    main: number;
   };
   padding: {
     x: number;

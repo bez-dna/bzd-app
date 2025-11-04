@@ -48,5 +48,13 @@ export const dict = {
         sources: "Sources",
       },
     },
+
+    new_message: {
+      button: "Post",
+    },
+
+    warn: {
+      text: "TBD: Something went wrong",
+    },
   },
 };

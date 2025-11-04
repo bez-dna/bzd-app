@@ -5,8 +5,10 @@ import { StyleSheet } from "react-native-unistyles";
 
 export const Header = () => {
   return (
-    <View style={styles.left}>
-      <BacktoMessages />
+    <View style={styles.root}>
+      <View style={styles.left}>
+        <BacktoMessages />
+      </View>
     </View>
   );
 };
@@ -15,12 +17,12 @@ const BacktoMessages = () => {
   const nav = useNavigation();
 
   const handlePress = () => {
-    nav.navigate("MessagesStack");
+    nav.goBack();
   };
 
   return (
-    <Pressable style={styles.item} onPress={handlePress}>
-      <XIcon style={styles.icon} size={24} />
+    <Pressable style={styles.press} onPress={handlePress}>
+      <XIcon style={styles.button} size={24} />
     </Pressable>
   );
 };
@@ -29,6 +31,7 @@ const styles = StyleSheet.create((theme) => ({
   root: {
     flexDirection: "row",
     justifyContent: "space-between",
+    paddingVertical: theme.padding.y,
   },
 
   left: {
@@ -36,11 +39,11 @@ const styles = StyleSheet.create((theme) => ({
     marginLeft: theme.padding.x,
   },
 
-  item: {
+  press: {
     padding: theme.padding.y,
   },
 
-  icon: {
+  button: {
     // TODO: без этого, просто с color не катит :/
     margin: 0,
     color: theme.colors.text.primary,

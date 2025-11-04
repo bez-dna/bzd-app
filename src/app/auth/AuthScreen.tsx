@@ -2,6 +2,7 @@ import { useFocusEffect } from "@react-navigation/native";
 import { Observer, observer } from "mobx-react-lite";
 import { useCallback } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
+
 import { AuthStore, AuthStoreContext } from "./AuthStore";
 import { Complete } from "./Complete";
 import { Header } from "./Header";

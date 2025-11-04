@@ -4,41 +4,28 @@ import { useCallback } from "react";
 import { ScrollView, Text, View } from "react-native";
 import { StyleSheet } from "react-native-unistyles";
 
-import { useAPI } from "../../api/Api";
 import { useI18n } from "../../i18n/I18nStore";
 import { GetContacts } from "./GetContacts";
 import { Header } from "./Header";
-import { SourcesListContact } from "./SourcesListContact";
-import { SourcesListSource } from "./SourcesListSource";
-import { useSourcesStore } from "./SourcesStore";
 import { User } from "./User";
+import { UsersListContact } from "./UsersListContact";
+import { UsersListSource } from "./UsersListSource";
+import { useUsersStore } from "./UsersStore";
 
-export const SourcesList = observer(() => {
-  const api = useAPI();
+export const UsersList = observer(() => {
   const { t } = useI18n();
-  const sourcesStore = useSourcesStore();
+  const store = useUsersStore();
 
   useFocusEffect(
     useCallback(() => {
       (async () => {
-        const { sources, contacts } = await api.sources.get_sources();
-        sourcesStore.setSources(sources);
-        sourcesStore.setContacts(contacts);
-
-        // TBD: нужно убрать аналогичные вызовы в SourcesListContact и GetContacts
+        await store.updateData();
       })();
 
       return () => {
-        sourcesStore.clearSources();
-        sourcesStore.clearContacts();
+        store.clearData();
       };
-    }, [
-      api.sources.get_sources,
-      sourcesStore.clearSources,
-      sourcesStore.setSources,
-      sourcesStore.setContacts,
-      sourcesStore.clearContacts,
-    ]),
+    }, [store.updateData, store.clearData]),
   );
 
   return (
@@ -47,22 +34,22 @@ export const SourcesList = observer(() => {
 
       <User />
 
-      {sourcesStore.sources.length > 0 && (
+      {store.sources.length > 0 && (
         <View style={styles.sources}>
           <Text style={styles.title}>{t("sources.sources.title")}</Text>
 
-          {sourcesStore.sources.map((source) => (
-            <SourcesListSource key={source.source_id} source={source} />
+          {store.sources.map((source) => (
+            <UsersListSource key={source.source_id} source={source} />
           ))}
         </View>
       )}
 
-      {sourcesStore.contacts.length > 0 && (
+      {store.contacts.length > 0 && (
         <View style={styles.contacts}>
           <Text style={styles.title}>{t("sources.contacts.title")}</Text>
 
-          {sourcesStore.contacts.map((contact) => (
-            <SourcesListContact key={contact.contact_id} contact={contact} />
+          {store.contacts.map((contact) => (
+            <UsersListContact key={contact.contact_id} contact={contact} />
           ))}
         </View>
       )}

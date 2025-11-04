@@ -1,49 +1,48 @@
 import { useState } from "react";
 import { Pressable, Text, View } from "react-native";
 import { StyleSheet } from "react-native-unistyles";
+
 import { useAPI } from "../../api/Api";
 import { useI18n } from "../../i18n/I18nStore";
-import { type Contact, useSourcesStore } from "./SourcesStore";
+import { type ContactModel, useUsersStore } from "./UsersStore";
 
-export const SourcesListContact = ({ contact }: { contact: Contact }) => {
+export const UsersListContact = ({ contact }: { contact: ContactModel }) => {
   const { t } = useI18n();
   const api = useAPI();
-  const sourcesStore = useSourcesStore();
+  const store = useUsersStore();
+  const user = contact.user;
 
   const [pending, setPending] = useState(false);
 
   const handlePress = async () => {
     setPending(true);
 
-    const _data = await api.sources.create_source({ user_id: contact.user_id });
+    const _data = await api.sources.create_source({ user_id: user.user_id });
 
-    const { sources, contacts } = await api.sources.get_sources();
-
-    sourcesStore.setSources(sources);
-    sourcesStore.setContacts(contacts);
+    store.updateData();
 
     setPending(false);
   };
 
   return (
     <View style={styles.contact}>
-      <View style={styles.image(contact.color)}>
-        <Text style={styles.abbr}>{contact.abbr}</Text>
+      <View style={styles.image(user.color)}>
+        <Text style={styles.abbr}>{user.abbr}</Text>
       </View>
 
       <View style={styles.data}>
         <View>
           <Text style={[styles.label]} numberOfLines={1}>
-            {contact.name}
+            {user.name}
           </Text>
         </View>
 
         <View>
           <Text style={[styles.phone_number]} numberOfLines={1}>
-            {contact.phone}
+            {user.phone}
 
             {contact.contact_name !== "" &&
-              contact.contact_name !== contact.name &&
+              contact.contact_name !== user.name &&
               ` (${contact.contact_name})`}
           </Text>
         </View>
@@ -90,7 +89,6 @@ const styles = StyleSheet.create((theme) => ({
 
   phone_number: {
     color: theme.colors.text.primary,
-    fontSize: theme.fonts.base * 0.875,
   },
 
   action: {
@@ -99,7 +97,6 @@ const styles = StyleSheet.create((theme) => ({
 
   button: (disabled: boolean) => ({
     color: theme.colors.button.text,
-    fontSize: theme.fonts.base * 0.875,
     backgroundColor: theme.colors.button.background,
     fontWeight: 700,
     paddingHorizontal: theme.padding.x,

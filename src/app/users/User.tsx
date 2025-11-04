@@ -1,5 +1,6 @@
 import { Pressable, Text, View } from "react-native";
 import { StyleSheet } from "react-native-unistyles";
+
 import { useI18n } from "../../i18n/I18nStore";
 import { useMainStore } from "../main/MainStore";
 
@@ -72,7 +73,6 @@ const styles = StyleSheet.create((theme) => ({
   },
 
   desc: {
-    fontSize: theme.fonts.base * 0.875,
     color: theme.colors.text.secondary,
   },
 
@@ -84,7 +84,6 @@ const styles = StyleSheet.create((theme) => ({
   logout: {
     color: theme.colors.text.primary,
     lineHeight: 24,
-    fontSize: theme.fonts.base * 0.875,
     fontWeight: 700,
   },
 }));

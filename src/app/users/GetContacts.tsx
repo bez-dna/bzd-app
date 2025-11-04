@@ -1,15 +1,16 @@
 import { Pressable, Text, View } from "react-native";
 import Contacts from "react-native-contacts";
 import { StyleSheet } from "react-native-unistyles";
+
 import { useAPI } from "../../api/Api";
 import { useI18n } from "../../i18n/I18nStore";
-import { useSourcesStore } from "./SourcesStore";
+import { useUsersStore } from "./UsersStore";
 
 // TBD: проверка прав не работает на iOS https://github.com/morenoh149/react-native-contacts/issues/765
 // нужно подключить другую либу для пермиссий чтобы блок не показывался постоянно.
 
 export const GetContacts = () => {
-  const sourcesStore = useSourcesStore();
+  const store = useUsersStore();
   const { t } = useI18n();
   const api = useAPI();
 
@@ -26,10 +27,7 @@ export const GetContacts = () => {
       ),
     });
 
-    const { sources, contacts } = await api.sources.get_sources();
-
-    sourcesStore.setSources(sources);
-    sourcesStore.setContacts(contacts);
+    await store.updateData();
   };
 
   return (
@@ -55,6 +53,8 @@ const styles = StyleSheet.create((theme) => ({
     fontSize: theme.fonts.base,
     marginBottom: theme.margin.s,
     maxWidth: "85%",
+    marginHorizontal: "auto",
+    textAlign: "center",
   },
 
   press: {
@@ -64,7 +64,6 @@ const styles = StyleSheet.create((theme) => ({
   button: (disabled: boolean) => ({
     color: theme.colors.button.text,
     backgroundColor: theme.colors.button.background,
-    fontSize: theme.fonts.base * 0.875,
     fontWeight: 700,
     paddingHorizontal: theme.padding.x * 2,
     paddingVertical: theme.padding.y,
