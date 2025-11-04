@@ -1,9 +1,9 @@
-import { FlatList, View } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import { FlatList, View } from "react-native";
+import { StyleSheet } from "react-native-unistyles";
 
 import { Header } from "./Header";
 import { MessagesListItem } from "./MessagesListItem";
-import { StyleSheet } from "react-native-unistyles";
 
 export const MessagesList = () => {
   const _navigation = useNavigation();

@@ -1,5 +1,5 @@
-import { observer } from "mobx-react-lite";
 import type { StaticScreenProps } from "@react-navigation/native";
+import { observer } from "mobx-react-lite";
 
 import { AuthScreen } from "../auth/AuthScreen";
 import { useMainStore } from "../main/MainStore";

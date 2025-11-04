@@ -7,10 +7,10 @@ import { StyleSheet } from "react-native-unistyles";
 import { useI18n } from "../../i18n/I18nStore";
 import { GetContacts } from "./GetContacts";
 import { Header } from "./Header";
+import { User } from "./User";
 import { UsersListContact } from "./UsersListContact";
 import { UsersListSource } from "./UsersListSource";
 import { useUsersStore } from "./UsersStore";
-import { User } from "./User";
 
 export const UsersList = observer(() => {
   const { t } = useI18n();

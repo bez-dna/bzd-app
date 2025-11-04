@@ -1,10 +1,10 @@
 import { observer } from "mobx-react-lite";
 
+import { useAPI } from "../../api/Api";
 import { AuthScreen } from "../auth/AuthScreen";
 import { useMainStore } from "../main/MainStore";
 import { UsersList } from "./UsersList";
 import { UsersStore, UsersStoreContext } from "./UsersStore";
-import { useAPI } from "../../api/Api";
 
 export const UsersScreen = observer(() => {
   const mainStore = useMainStore();

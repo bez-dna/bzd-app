@@ -1,16 +1,16 @@
+import { useNavigation } from "@react-navigation/native";
 import { observer } from "mobx-react-lite";
 import { useEffect, useState } from "react";
 import { Pressable, Text, TextInput, View } from "react-native";
 import { StyleSheet } from "react-native-unistyles";
-import { useNavigation } from "@react-navigation/native";
 
+import type { MessagesStackNavigationProp } from "../../App";
 import { useAPI } from "../../api/Api";
+import { useI18n } from "../../i18n/I18nStore";
+import { Warn } from "../main/Warn";
+import { Header } from "./Header";
 import { useNewMessageStore } from "./NewMessageStore";
 import { TopicsSelect } from "./TopicsSelect";
-import { Header } from "./Header";
-import { useI18n } from "../../i18n/I18nStore";
-import type { MessagesStackNavigationProp } from "../../App";
-import { Warn } from "../main/Warn";
 
 export const CreateMessage = observer(() => {
   const api = useAPI();

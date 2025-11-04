@@ -1,8 +1,8 @@
 import { Pressable, Text, View } from "react-native";
 import { StyleSheet } from "react-native-unistyles";
 
-import { useUsersStore, type TopicModel, type TopicsModel } from "./UsersStore";
 import { useAPI } from "../../api/Api";
+import { type TopicModel, type TopicsModel, useUsersStore } from "./UsersStore";
 
 export const TopicsList = ({ topics }: { topics: TopicsModel }) => {
   return (

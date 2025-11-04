@@ -1,8 +1,9 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+
 import { MessageScreen } from "../message/MessageScreen";
-import { MessagesScreen } from "./MessagesScreen";
-import { TopicsScreen } from "../topics/TopicsScreen";
 import { CreateMessageScreen } from "../new-message/CreateMessageScreen";
+import { TopicsScreen } from "../topics/TopicsScreen";
+import { MessagesScreen } from "./MessagesScreen";
 
 export const MessagesStack = createNativeStackNavigator({
   initialRouteName: "Messages",

@@ -2,8 +2,8 @@ import {
   createStaticNavigation,
   type StaticParamList,
 } from "@react-navigation/native";
+import type { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { StrictMode, useEffect } from "react";
-import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { useUnistyles } from "react-native-unistyles";
 
 import { MainStore, MainStoreContext } from "./app/main/MainStore";
@@ -11,7 +11,7 @@ import { Layout } from "./layout/Layout";
 import "./unistyles";
 import { MainTabs } from "./app/main/MainTabs";
 import type { MessagesStack } from "./app/messages/MessagesStack";
-import { UsersStack } from "./app/users/UsersStack";
+import type { UsersStack } from "./app/users/UsersStack";
 
 const Navigation = createStaticNavigation(MainTabs);
 

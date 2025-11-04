@@ -1,11 +1,10 @@
+import { CircleXIcon } from "lucide-react-native";
+import { observer } from "mobx-react-lite";
 import { Pressable, Text, View } from "react-native";
 import { StyleSheet } from "react-native-unistyles";
-import { observer } from "mobx-react-lite";
 
-import { CircleXIcon } from "lucide-react-native";
-
-import { useMainStore } from "./MainStore";
 import { useI18n } from "../../i18n/I18nStore";
+import { useMainStore } from "./MainStore";
 
 // TBD: сейчас один компонент используется на всех страницах, т.е. если в одной ручке с трельнуло,
 // рендерим везде, была мысль ошибку сделать enum или очищать стор ошибки на каждый транзишн скрана,

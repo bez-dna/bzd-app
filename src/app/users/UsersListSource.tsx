@@ -1,8 +1,8 @@
 import { Text, View } from "react-native";
 import { StyleSheet } from "react-native-unistyles";
 
-import type { SourceModel } from "./UsersStore";
 import { TopicsList } from "./TopicsList";
+import type { SourceModel } from "./UsersStore";
 
 export const UsersListSource = ({ source }: { source: SourceModel }) => {
   const user = source.user;
