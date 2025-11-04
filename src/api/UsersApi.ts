@@ -29,6 +29,15 @@ type GetUsersResponse = {
       abbr: string;
       color: string;
     };
+
+    topics: {
+      topic_id: string;
+      title: string;
+
+      topic_user: {
+        topic_user_id: string;
+      } | null;
+    }[];
   }[];
 
   contacts: {

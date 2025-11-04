@@ -1,7 +1,7 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 import { UsersScreen } from "./UsersScreen";
-import { UserScreen } from "../user/UserScreen";
+// import { UserScreen } from "../user/UserScreen";
 
 export const UsersStack = createNativeStackNavigator({
   initialRouteName: "Users",
@@ -11,9 +11,9 @@ export const UsersStack = createNativeStackNavigator({
       screen: UsersScreen,
     },
 
-    User: {
-      screen: UserScreen,
-    },
+    // User: {
+    //   screen: UserScreen,
+    // },
   },
 
   screenOptions: {

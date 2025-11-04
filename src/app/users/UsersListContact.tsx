@@ -3,12 +3,12 @@ import { Pressable, Text, View } from "react-native";
 import { StyleSheet } from "react-native-unistyles";
 import { useAPI } from "../../api/Api";
 import { useI18n } from "../../i18n/I18nStore";
-import { type Contact, useUsersStore } from "./UsersStore";
+import { type ContactModel, useUsersStore } from "./UsersStore";
 
-export const UsersListContact = ({ contact }: { contact: Contact }) => {
+export const UsersListContact = ({ contact }: { contact: ContactModel }) => {
   const { t } = useI18n();
   const api = useAPI();
-  const sourcesStore = useUsersStore();
+  const store = useUsersStore();
   const user = contact.user;
 
   const [pending, setPending] = useState(false);
@@ -18,9 +18,7 @@ export const UsersListContact = ({ contact }: { contact: Contact }) => {
 
     const _data = await api.sources.create_source({ user_id: user.user_id });
 
-    const { sources, contacts } = await api.users.get_users();
-
-    sourcesStore.setData(sources, contacts);
+    store.updateData();
 
     setPending(false);
   };

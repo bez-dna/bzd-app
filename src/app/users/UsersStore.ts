@@ -1,15 +1,28 @@
-import { makeAutoObservable } from "mobx";
+import { makeAutoObservable, runInAction } from "mobx";
 import { createContext, useContext } from "react";
 
-export class UsersStore {
-  sources: Sources = [];
-  contacts: Contacts = [];
+import type { API } from "../../api/Api";
 
-  constructor() {
+export class UsersStore {
+  api: API;
+  sources: SourcesModel = [];
+  contacts: ContactsModel = [];
+
+  constructor(api: API) {
     makeAutoObservable(this);
+
+    this.api = api;
   }
 
-  setData = (sources: Sources, contacts: Contacts) => {
+  updateData = async () => {
+    const { sources, contacts } = await this.api.users.get_users();
+
+    runInAction(() => {
+      this.setData(sources, contacts);
+    });
+  };
+
+  setData = (sources: SourcesModel, contacts: ContactsModel) => {
     this.sources = sources;
     this.contacts = contacts;
   };
@@ -30,8 +43,9 @@ export const useUsersStore = (): UsersStore => {
   return store;
 };
 
-export type Source = {
+export type SourceModel = {
   source_id: string;
+
   user: {
     user_id: string;
     name: string;
@@ -39,11 +53,13 @@ export type Source = {
     abbr: string;
     color: string;
   };
+
+  topics: TopicsModel;
 };
 
-export type Sources = Source[];
+export type SourcesModel = SourceModel[];
 
-export type Contact = {
+export type ContactModel = {
   contact_id: string;
   contact_name: string;
   user: {
@@ -55,4 +71,14 @@ export type Contact = {
   };
 };
 
-export type Contacts = Contact[];
+export type ContactsModel = ContactModel[];
+
+export type TopicModel = {
+  topic_id: string;
+  title: string;
+  topic_user: {
+    topic_user_id: string;
+  } | null;
+};
+
+export type TopicsModel = TopicModel[];

@@ -4,7 +4,6 @@ import { useCallback } from "react";
 import { ScrollView, Text, View } from "react-native";
 import { StyleSheet } from "react-native-unistyles";
 
-import { useAPI } from "../../api/Api";
 import { useI18n } from "../../i18n/I18nStore";
 import { GetContacts } from "./GetContacts";
 import { Header } from "./Header";
@@ -14,23 +13,19 @@ import { useUsersStore } from "./UsersStore";
 import { User } from "./User";
 
 export const UsersList = observer(() => {
-  const api = useAPI();
   const { t } = useI18n();
-  const sourcesStore = useUsersStore();
+  const store = useUsersStore();
 
   useFocusEffect(
     useCallback(() => {
       (async () => {
-        const { sources, contacts } = await api.users.get_users();
-        sourcesStore.setData(sources, contacts);
-
-        // TBD: нужно убрать аналогичные вызовы в SourcesListContact и GetContacts
+        await store.updateData();
       })();
 
       return () => {
-        sourcesStore.clearData();
+        store.clearData();
       };
-    }, [api.users.get_users, sourcesStore.clearData, sourcesStore.setData]),
+    }, [store.updateData, store.clearData]),
   );
 
   return (
@@ -39,21 +34,21 @@ export const UsersList = observer(() => {
 
       <User />
 
-      {sourcesStore.sources.length > 0 && (
+      {store.sources.length > 0 && (
         <View style={styles.sources}>
           <Text style={styles.title}>{t("sources.sources.title")}</Text>
 
-          {sourcesStore.sources.map((source) => (
+          {store.sources.map((source) => (
             <UsersListSource key={source.source_id} source={source} />
           ))}
         </View>
       )}
 
-      {sourcesStore.contacts.length > 0 && (
+      {store.contacts.length > 0 && (
         <View style={styles.contacts}>
           <Text style={styles.title}>{t("sources.contacts.title")}</Text>
 
-          {sourcesStore.contacts.map((contact) => (
+          {store.contacts.map((contact) => (
             <UsersListContact key={contact.contact_id} contact={contact} />
           ))}
         </View>

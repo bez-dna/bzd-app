@@ -1,31 +1,30 @@
-import { Pressable, Text, View } from "react-native";
+import { Text, View } from "react-native";
 import { StyleSheet } from "react-native-unistyles";
-import { useNavigation } from "@react-navigation/native";
 
-import type { Source } from "./UsersStore";
+import type { SourceModel } from "./UsersStore";
+import { TopicsList } from "./TopicsList";
 
-export const UsersListSource = ({ source }: { source: Source }) => {
-  const nav = useNavigation();
+export const UsersListSource = ({ source }: { source: SourceModel }) => {
   const user = source.user;
 
-  const handlePress = () => {
-    nav.navigate("User", { user_id: source.user.user_id });
-  };
-
   return (
-    <Pressable style={styles.source} onPress={handlePress}>
+    <View style={styles.source}>
       <View style={styles.image(user.color)}>
         <Text style={styles.abbr}>{user.abbr}</Text>
       </View>
 
       <View style={styles.qqq}>
-        <View>
-          <Text style={[styles.label]} numberOfLines={1}>
+        <View style={styles.user}>
+          <Text style={[styles.name]} numberOfLines={1}>
             {user.name}
           </Text>
         </View>
+
+        <View>
+          <TopicsList topics={source.topics} />
+        </View>
       </View>
-    </Pressable>
+    </View>
   );
 };
 
@@ -48,10 +47,16 @@ const styles = StyleSheet.create((theme) => ({
   source: {
     flexDirection: "row",
     marginBottom: theme.margin.s,
-    alignItems: "center",
+    // alignItems: "center",
   },
 
-  label: {
+  user: {
+    // backgroundColor: "pink",
+    lineHeight: 20,
+    margin: 0,
+  },
+
+  name: {
     color: theme.colors.text.primary,
     fontSize: theme.fonts.base,
     fontWeight: 700,
@@ -60,5 +65,6 @@ const styles = StyleSheet.create((theme) => ({
   qqq: {
     flexBasis: 0,
     flexGrow: 1,
+    paddingTop: 10,
   },
 }));
