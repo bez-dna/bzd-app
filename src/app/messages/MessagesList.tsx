@@ -1,30 +1,51 @@
-import { useNavigation } from "@react-navigation/native";
+import { useFocusEffect, useNavigation } from "@react-navigation/native";
 import { FlatList, View } from "react-native";
 import { StyleSheet } from "react-native-unistyles";
 
 import { Header } from "./Header";
 import { MessagesListItem } from "./MessagesListItem";
+import { useCallback } from "react";
+import { useMessagesStore } from "./MessagesStore";
+import { observer } from "mobx-react-lite";
+import { useMainStore } from "../main/MainStore";
 
-export const MessagesList = () => {
-  const _navigation = useNavigation();
+export const MessagesList = observer(() => {
+  const nav = useNavigation();
+  const store = useMessagesStore();
+  const mainStore = useMainStore();
 
-  const data = [...Array(100).keys()].map((i) => {
-    return {
-      id: i,
-      title: `TITLE - ${i}`,
-    };
-  });
+  useFocusEffect(
+    useCallback(() => {
+      if (!mainStore.isAuth) {
+        nav.navigate("UsersStack");
+        return;
+      }
+
+      (async () => {
+        await store.updateData();
+      })();
+
+      return () => {
+        store.clearData();
+      };
+    }, [store.updateData, store.clearData, mainStore.isAuth, nav.navigate]),
+  );
+
+  const onEndReached = async () => {
+    await store.updateData();
+  };
 
   return (
     <FlatList
       ListHeaderComponent={Header}
+      onEndReached={onEndReached}
       ListFooterComponent={Footer}
-      data={data}
-      renderItem={({ item }) => <MessagesListItem {...item} />}
-      keyExtractor={(item) => item.id.toString()}
+      data={[...store.messages.values()]}
+      renderItem={({ item }) => <MessagesListItem message={item} />}
+      keyExtractor={(message) => message.message_id}
     />
   );
-};
+});
 
 const Footer = () => {
   return <View style={styles.footer} />;

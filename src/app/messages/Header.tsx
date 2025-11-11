@@ -5,6 +5,8 @@ import { StyleSheet } from "react-native-unistyles";
 
 import { useI18n } from "../../i18n/I18nStore";
 import { Warn } from "../main/Warn";
+import { observer } from "mobx-react-lite";
+import { useMainStore } from "../main/MainStore";
 
 export const Header = () => {
   return (
@@ -21,20 +23,23 @@ export const Header = () => {
   );
 };
 
-const NewMessage = () => {
+const NewMessage = observer(() => {
   const nav = useNavigation();
   const { t } = useI18n();
+  const mainStore = useMainStore();
 
   const handlePress = () => {
     nav.navigate("NewMessage");
   };
+
+  if (!mainStore.isAuth) return;
 
   return (
     <Pressable style={styles.item} onPress={handlePress}>
       <Text style={styles.label}>{t("messages.header.new_message")}</Text>
     </Pressable>
   );
-};
+});
 
 const Sources = () => {
   const nav = useNavigation();

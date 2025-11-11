@@ -47,10 +47,20 @@ export const dict = {
         new_message: "New message",
         sources: "Sources",
       },
+
+      no_auth: {
+        desc: "TDB: auth please",
+        button: "Join",
+      },
     },
 
     new_message: {
       button: "Post",
+
+      no_auth: {
+        desc: "TDB: auth please",
+        button: "Join",
+      },
     },
 
     warn: {

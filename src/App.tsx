@@ -54,3 +54,6 @@ declare global {
 export type MessagesStackNavigationProp<
   T extends keyof MessagesStackParamList,
 > = NativeStackNavigationProp<MessagesStackParamList, T>;
+
+export type MainTabsNavigationProp<T extends keyof MainTabsParamList> =
+  NativeStackNavigationProp<MainTabsParamList, T>;

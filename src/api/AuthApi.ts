@@ -8,6 +8,7 @@ export class AuthAPI {
   }
 
   me = async (): Promise<MeResponse> => {
+    // TODO: тут нужно поставить глобальный хендлер от мэин стора чтобы был экран с кнопкой повторить, мы не ожидаем что эта ручка может лежать, аналог хелсчека
     return (await this.api.client.get<MeResponse>("/auth/me")).data;
   };
 
