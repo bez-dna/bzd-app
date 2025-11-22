@@ -10,8 +10,6 @@ export class MessagesAPI {
   create_message = async (
     data: CreateMessageRequest,
   ): Promise<CreateMessageResponse> => {
-    console.log(data);
-
     return (
       await this.api.client.post<CreateMessageResponse>("/messages", data)
     ).data;
@@ -33,8 +31,6 @@ export class MessagesAPI {
     data: GetMessageMessageRequest,
   ): Promise<GetMessageMessagesResponse> => {
     const { message_id, ...params } = data;
-
-    console.log(data);
 
     return (
       await this.api.client.get<GetMessageMessagesResponse>(

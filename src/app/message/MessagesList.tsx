@@ -1,11 +1,11 @@
+import { observer } from "mobx-react-lite";
 import { FlatList, Text, View } from "react-native";
+import { StyleSheet } from "react-native-unistyles";
 
+import { Footer } from "./Footer";
+import { Header } from "./Header";
 import { useMessageStore } from "./MessageStore";
 import { MessagesListItem } from "./MessagesListItem";
-import { Header } from "./Header";
-import { Footer } from "./Footer";
-import { StyleSheet } from "react-native-unistyles";
-import { observer } from "mobx-react-lite";
 
 export const MessagesList = observer(() => {
   const store = useMessageStore();

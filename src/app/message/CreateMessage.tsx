@@ -1,8 +1,9 @@
-import { useState } from "react";
-import { Button, Pressable, Text, TextInput, View } from "react-native";
-import { StyleSheet } from "react-native-unistyles";
-import { useAPI } from "../../api/Api";
 import { nanoid } from "nanoid";
+import { useState } from "react";
+import { Button, TextInput, View } from "react-native";
+import { StyleSheet } from "react-native-unistyles";
+
+import { useAPI } from "../../api/Api";
 import { useMessageStore } from "./MessageStore";
 
 export const CreateMessage = () => {
@@ -13,7 +14,7 @@ export const CreateMessage = () => {
   const store = useMessageStore();
 
   const handlePress = async () => {
-    const data = await api.messages
+    const _data = await api.messages
       .create_message({
         text: form.text,
         code: nanoid(),

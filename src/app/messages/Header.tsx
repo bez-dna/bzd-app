@@ -1,12 +1,12 @@
 import { useNavigation } from "@react-navigation/native";
+import { observer } from "mobx-react-lite";
 import { Pressable, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { StyleSheet } from "react-native-unistyles";
 
 import { useI18n } from "../../i18n/I18nStore";
-import { Warn } from "../main/Warn";
-import { observer } from "mobx-react-lite";
 import { useMainStore } from "../main/MainStore";
+import { Warn } from "../main/Warn";
 
 export const Header = () => {
   return (

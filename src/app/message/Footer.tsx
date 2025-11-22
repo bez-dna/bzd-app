@@ -1,7 +1,7 @@
-import { SafeAreaView } from "react-native-safe-area-context";
-import { Text, View } from "react-native";
-import { StyleSheet } from "react-native-unistyles";
 import { observer } from "mobx-react-lite";
+import { Text, View } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { StyleSheet } from "react-native-unistyles";
 
 import { useMessageStore } from "./MessageStore";
 

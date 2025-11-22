@@ -1,13 +1,13 @@
 import { useFocusEffect, useNavigation } from "@react-navigation/native";
+import { observer } from "mobx-react-lite";
+import { useCallback } from "react";
 import { FlatList, View } from "react-native";
 import { StyleSheet } from "react-native-unistyles";
-import { observer } from "mobx-react-lite";
 
+import { useMainStore } from "../main/MainStore";
 import { Header } from "./Header";
 import { MessagesListItem } from "./MessagesListItem";
-import { useCallback } from "react";
 import { useMessagesStore } from "./MessagesStore";
-import { useMainStore } from "../main/MainStore";
 
 export const MessagesList = observer(() => {
   const nav = useNavigation();

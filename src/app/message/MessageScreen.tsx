@@ -1,8 +1,8 @@
 import type { StaticScreenProps } from "@react-navigation/native";
 
-import { MessageStore, MessageStoreContext } from "./MessageStore";
 import { useAPI } from "../../api/Api";
 import { MessageDetails } from "./MessageDetails";
+import { MessageStore, MessageStoreContext } from "./MessageStore";
 
 type Props = StaticScreenProps<{
   messageId: string;

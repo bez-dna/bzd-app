@@ -1,6 +1,6 @@
+import { useNavigation } from "@react-navigation/native";
 import { Pressable, Text, View } from "react-native";
 import { StyleSheet } from "react-native-unistyles";
-import { useNavigation } from "@react-navigation/native";
 
 import { useI18n } from "../../i18n/I18nStore";
 import { Header } from "./Header";

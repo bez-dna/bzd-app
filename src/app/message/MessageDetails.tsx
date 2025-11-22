@@ -1,9 +1,9 @@
-import { observer } from "mobx-react-lite";
 import { useFocusEffect } from "@react-navigation/native";
+import { observer } from "mobx-react-lite";
 import { useCallback } from "react";
 
-import { MessagesList } from "./MessagesList";
 import { useMessageStore } from "./MessageStore";
+import { MessagesList } from "./MessagesList";
 
 export const MessageDetails = observer(() => {
   const store = useMessageStore();
