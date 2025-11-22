@@ -10,13 +10,15 @@ export class MessagesAPI {
   create_message = async (
     data: CreateMessageRequest,
   ): Promise<CreateMessageResponse> => {
+    console.log(data);
+
     return (
       await this.api.client.post<CreateMessageResponse>("/messages", data)
     ).data;
   };
 
   get_user_messages = async (
-    data: CreateUserMessageRequest,
+    data: GetUserMessageRequest,
   ): Promise<GetUserMessagesResponse> => {
     const params = data;
 
@@ -26,10 +28,28 @@ export class MessagesAPI {
       })
     ).data;
   };
+
+  get_message_messages = async (
+    data: GetMessageMessageRequest,
+  ): Promise<GetMessageMessagesResponse> => {
+    const { message_id, ...params } = data;
+
+    console.log(data);
+
+    return (
+      await this.api.client.get<GetMessageMessagesResponse>(
+        `/messages/${message_id}/messages`,
+        {
+          params,
+        },
+      )
+    ).data;
+  };
 }
 
 type CreateMessageRequest = {
-  topic_ids: string[];
+  topic_ids: string[] | null;
+  message_id: string | null;
   text: string;
   code: string;
 };
@@ -40,11 +60,24 @@ type CreateMessageResponse = {
   };
 };
 
-type CreateUserMessageRequest = {
+type GetUserMessageRequest = {
   cursor_message_id: string | null;
 };
 
 type GetUserMessagesResponse = {
+  messages: {
+    message_id: string;
+    text: string;
+  }[];
+  cursor_message_id: string;
+};
+
+type GetMessageMessageRequest = {
+  message_id: string;
+  cursor_message_id: string | null;
+};
+
+type GetMessageMessagesResponse = {
   messages: {
     message_id: string;
     text: string;

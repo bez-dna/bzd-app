@@ -1,12 +1,12 @@
 import { useFocusEffect, useNavigation } from "@react-navigation/native";
 import { FlatList, View } from "react-native";
 import { StyleSheet } from "react-native-unistyles";
+import { observer } from "mobx-react-lite";
 
 import { Header } from "./Header";
 import { MessagesListItem } from "./MessagesListItem";
 import { useCallback } from "react";
 import { useMessagesStore } from "./MessagesStore";
-import { observer } from "mobx-react-lite";
 import { useMainStore } from "../main/MainStore";
 
 export const MessagesList = observer(() => {
@@ -31,14 +31,14 @@ export const MessagesList = observer(() => {
     }, [store.updateData, store.clearData, mainStore.isAuth, nav.navigate]),
   );
 
-  const onEndReached = async () => {
+  const handleEndReached = async () => {
     await store.updateData();
   };
 
   return (
     <FlatList
       ListHeaderComponent={Header}
-      onEndReached={onEndReached}
+      onEndReached={handleEndReached}
       ListFooterComponent={Footer}
       data={[...store.messages.values()]}
       renderItem={({ item }) => <MessagesListItem message={item} />}

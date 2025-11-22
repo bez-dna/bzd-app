@@ -38,11 +38,11 @@ export class MessagesStore {
 export const MessagesStoreContext = createContext<MessagesStore | null>(null);
 
 export const useMessagesStore = (): MessagesStore => {
-  const messagesStore = useContext(MessagesStoreContext);
+  const store = useContext(MessagesStoreContext);
 
-  if (messagesStore === null) throw new Error("PANIC!");
+  if (store === null) throw new Error("PANIC!");
 
-  return messagesStore;
+  return store;
 };
 
 export type MessageModel = {

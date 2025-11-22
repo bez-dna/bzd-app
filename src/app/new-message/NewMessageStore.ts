@@ -27,7 +27,12 @@ export class NewMessageStore {
   };
 
   get form() {
-    return { text: this.text, code: this.code, topic_ids: this.topic_ids };
+    return {
+      text: this.text,
+      code: this.code,
+      topic_ids: this.topic_ids,
+      message_id: null,
+    };
   }
 }
 
