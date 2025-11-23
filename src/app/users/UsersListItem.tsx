@@ -1,16 +1,11 @@
+import { useNavigation } from "@react-navigation/native";
 import { Pressable, Text, View } from "react-native";
 import { StyleSheet } from "react-native-unistyles";
 
-// import { useAPI } from "../../api/Api";
-// import { useI18n } from "../../i18n/I18nStore";
 import type { UserModel } from "./UsersStore";
-import { useNavigation } from "@react-navigation/native";
 
 export const UsersListItem = ({ user }: { user: UserModel }) => {
   const nav = useNavigation();
-  // const { t } = useI18n();
-  // const api = useAPI();
-  // const store = useUsersStore();
 
   const handlePress = async () => {
     nav.navigate("User", { userId: user.user_id });

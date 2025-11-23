@@ -1,9 +1,9 @@
 import type { StaticScreenProps } from "@react-navigation/native";
 import { observer } from "mobx-react-lite";
 
+import { useAPI } from "../../api/Api";
 import { UserDetails } from "./UserDetails";
 import { UserStore, UserStoreContext } from "./UserStore";
-import { useAPI } from "../../api/Api";
 
 type Props = StaticScreenProps<{
   userId: string;

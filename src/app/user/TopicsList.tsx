@@ -1,8 +1,8 @@
-import { View } from "react-native";
 import { observer } from "mobx-react-lite";
+import { View } from "react-native";
 
-import { useUserStore } from "./UserStore";
 import { TopicListItem } from "./TopicsListItem";
+import { useUserStore } from "./UserStore";
 
 export const TopicsList = observer(() => {
   const store = useUserStore();

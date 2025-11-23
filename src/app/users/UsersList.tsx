@@ -8,8 +8,8 @@ import { useI18n } from "../../i18n/I18nStore";
 import { GetContacts } from "./GetContacts";
 import { Header } from "./Header";
 import { User } from "./User";
-import { useUsersStore } from "./UsersStore";
 import { UsersListItem } from "./UsersListItem";
+import { useUsersStore } from "./UsersStore";
 
 export const UsersList = observer(() => {
   const { t } = useI18n();
