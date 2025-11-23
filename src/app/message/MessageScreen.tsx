@@ -1,6 +1,8 @@
 import type { StaticScreenProps } from "@react-navigation/native";
-import { Text } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
+
+import { useAPI } from "../../api/Api";
+import { MessageDetails } from "./MessageDetails";
+import { MessageStore, MessageStoreContext } from "./MessageStore";
 
 type Props = StaticScreenProps<{
   messageId: string;
@@ -8,10 +10,11 @@ type Props = StaticScreenProps<{
 
 export const MessageScreen = ({ route }: Props) => {
   const { messageId } = route.params;
+  const api = useAPI();
 
   return (
-    <SafeAreaView>
-      <Text>MessageScreen {messageId}</Text>
-    </SafeAreaView>
+    <MessageStoreContext.Provider value={new MessageStore(api, messageId)}>
+      <MessageDetails />
+    </MessageStoreContext.Provider>
   );
 };

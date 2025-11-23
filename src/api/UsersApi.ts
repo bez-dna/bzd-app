@@ -13,44 +13,27 @@ export class UsersAPI {
     ).data;
   };
 
+  get_user_topics = async (
+    data: GetUserTopicsRequest,
+  ): Promise<GetUserTopicsResponse> => {
+    return (
+      await this.api.client.get<GetUserTopicsResponse>(
+        `/users/${data.user_id}/topics`,
+      )
+    ).data;
+  };
+
   get_users = async (): Promise<GetUsersResponse> => {
     return (await this.api.client.get<GetUsersResponse>("/users")).data;
   };
 }
 
 type GetUsersResponse = {
-  sources: {
-    source_id: string;
-
-    user: {
-      user_id: string;
-      name: string;
-      phone: string;
-      abbr: string;
-      color: string;
-    };
-
-    topics: {
-      topic_id: string;
-      title: string;
-
-      topic_user: {
-        topic_user_id: string;
-      } | null;
-    }[];
-  }[];
-
-  contacts: {
-    contact_id: string;
-    contact_name: string;
-
-    user: {
-      user_id: string;
-      name: string;
-      phone: string;
-      abbr: string;
-      color: string;
-    };
+  users: {
+    user_id: string;
+    name: string;
+    abbr: string;
+    color: string;
   }[];
 };
 
@@ -59,15 +42,19 @@ type GetUserRequest = {
 };
 
 type GetUserResponse = {
-  source_id: string;
-
   user: {
     user_id: string;
     name: string;
     color: string;
     abbr: string;
   };
+};
 
+type GetUserTopicsRequest = {
+  user_id: string;
+};
+
+type GetUserTopicsResponse = {
   topics: {
     topic_id: string;
     title: string;

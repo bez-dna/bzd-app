@@ -8,8 +8,7 @@ import { useI18n } from "../../i18n/I18nStore";
 import { GetContacts } from "./GetContacts";
 import { Header } from "./Header";
 import { User } from "./User";
-import { UsersListContact } from "./UsersListContact";
-import { UsersListSource } from "./UsersListSource";
+import { UsersListItem } from "./UsersListItem";
 import { useUsersStore } from "./UsersStore";
 
 export const UsersList = observer(() => {
@@ -19,13 +18,13 @@ export const UsersList = observer(() => {
   useFocusEffect(
     useCallback(() => {
       (async () => {
-        await store.updateData();
+        await store.update();
       })();
 
       return () => {
-        store.clearData();
+        store.terminate();
       };
-    }, [store.updateData, store.clearData]),
+    }, [store.update, store.terminate]),
   );
 
   return (
@@ -34,24 +33,16 @@ export const UsersList = observer(() => {
 
       <User />
 
-      {store.sources.length > 0 && (
-        <View style={styles.sources}>
-          <Text style={styles.title}>{t("sources.sources.title")}</Text>
+      {store.users.length > 0 && (
+        <>
+          <Text style={styles.title}>{t("users.list.title")}</Text>
 
-          {store.sources.map((source) => (
-            <UsersListSource key={source.source_id} source={source} />
-          ))}
-        </View>
-      )}
-
-      {store.contacts.length > 0 && (
-        <View style={styles.contacts}>
-          <Text style={styles.title}>{t("sources.contacts.title")}</Text>
-
-          {store.contacts.map((contact) => (
-            <UsersListContact key={contact.contact_id} contact={contact} />
-          ))}
-        </View>
+          <View style={styles.list}>
+            {store.users.map((user) => (
+              <UsersListItem key={user.user_id} user={user} />
+            ))}
+          </View>
+        </>
       )}
 
       <GetContacts />
@@ -69,15 +60,10 @@ const styles = StyleSheet.create((theme) => ({
     marginBottom: theme.margin.s,
     fontWeight: 900,
     color: theme.colors.text.primary,
+    marginHorizontal: theme.padding.x,
   },
 
-  sources: {
-    paddingHorizontal: theme.padding.x,
-    marginBottom: theme.margin.m,
-  },
-
-  contacts: {
-    paddingHorizontal: theme.padding.x,
+  list: {
     marginBottom: theme.margin.m,
   },
 }));

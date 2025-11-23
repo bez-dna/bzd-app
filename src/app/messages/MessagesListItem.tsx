@@ -1,20 +1,33 @@
 import { useNavigation } from "@react-navigation/native";
 import { Pressable, Text, View } from "react-native";
+import { StyleSheet } from "react-native-unistyles";
 
-type ItemProps = { id: number; title: string };
+import type { MessageModel } from "./MessagesStore";
 
-export const MessagesListItem = ({ title, id }: ItemProps) => {
+export const MessagesListItem = ({ message }: { message: MessageModel }) => {
   const nav = useNavigation();
 
   const handlePress = () => {
-    nav.navigate("Message", { messageId: id.toString() });
+    nav.navigate("Message", { messageId: message.message_id });
   };
 
   return (
-    <View>
+    <View style={styles.root}>
       <Pressable onPress={handlePress}>
-        <Text style={{ color: "white" }}>{title}</Text>
+        <Text style={styles.text}>{message.text}</Text>
       </Pressable>
     </View>
   );
 };
+
+const styles = StyleSheet.create((theme) => ({
+  root: {
+    paddingHorizontal: theme.padding.x,
+    paddingVertical: theme.margin.s,
+  },
+
+  text: {
+    color: theme.colors.text.primary,
+    fontSize: theme.fonts.main,
+  },
+}));

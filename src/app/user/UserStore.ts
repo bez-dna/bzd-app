@@ -1,23 +1,37 @@
-import { makeAutoObservable } from "mobx";
+import { makeAutoObservable, runInAction } from "mobx";
 import { createContext, useContext } from "react";
 
+import type { API } from "../../api/Api";
+
 export class UserStore {
-  source: Source | null = null;
+  user_id: string;
+  api: API;
   user: UserModel | null = null;
   topics: TopicsModel = [];
 
-  constructor() {
+  constructor(api: API, user_id: string) {
     makeAutoObservable(this);
+
+    this.api = api;
+    this.user_id = user_id;
   }
 
-  setData = (source: Source, user: UserModel, topics: TopicsModel) => {
-    this.source = source;
-    this.user = user;
-    this.topics = topics;
+  update = async () => {
+    const { user } = await this.api.users.get_user({
+      user_id: this.user_id,
+    });
+
+    const { topics } = await this.api.users.get_user_topics({
+      user_id: this.user_id,
+    });
+
+    runInAction(() => {
+      this.user = user;
+      this.topics = topics;
+    });
   };
 
-  clearData = () => {
-    this.source = null;
+  terminate = () => {
     this.user = null;
     this.topics = [];
   };
@@ -26,15 +40,11 @@ export class UserStore {
 export const UserStoreContext = createContext<UserStore | null>(null);
 
 export const useUserStore = (): UserStore => {
-  const userStore = useContext(UserStoreContext);
+  const store = useContext(UserStoreContext);
 
-  if (userStore === null) throw new Error("PANIC!");
+  if (store === null) throw new Error("PANIC!");
 
-  return userStore;
-};
-
-export type Source = {
-  source_id: string;
+  return store;
 };
 
 export type UserModel = {

@@ -1,13 +1,16 @@
 import { useNavigation } from "@react-navigation/native";
 import { XIcon } from "lucide-react-native";
 import { Pressable, View } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 import { StyleSheet } from "react-native-unistyles";
 
 export const Header = () => {
   return (
-    <View style={styles.left}>
-      <BacktoMessages />
-    </View>
+    <SafeAreaView style={styles.root} edges={["top", "right", "left"]}>
+      <View style={styles.left}>
+        <BacktoMessages />
+      </View>
+    </SafeAreaView>
   );
 };
 

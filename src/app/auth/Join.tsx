@@ -1,11 +1,19 @@
 import { observer } from "mobx-react-lite";
 import { useMemo, useState } from "react";
-import { Pressable, Text, TextInput, View } from "react-native";
+import {
+  KeyboardAvoidingView,
+  Pressable,
+  ScrollView,
+  Text,
+  TextInput,
+  View,
+} from "react-native";
 import { StyleSheet } from "react-native-unistyles";
 
 import { useAPI } from "../../api/Api";
 import { useI18n } from "../../i18n/I18nStore";
 import { useAuthStore } from "./AuthStore";
+import { Header } from "./Header";
 
 export const Join = observer(() => {
   const api = useAPI();
@@ -26,30 +34,41 @@ export const Join = observer(() => {
   }, [form.phone_number.length]);
 
   return (
-    <View style={[styles.root]}>
-      <Text style={styles.title}>{t("auth.join.title")}</Text>
+    <KeyboardAvoidingView behavior="position">
+      <ScrollView alwaysBounceVertical={false}>
+        <Header />
 
-      <Text style={styles.desc}>{t("auth.join.desc")}</Text>
+        <View style={styles.root}>
+          <Text style={styles.title}>{t("auth.join.title")}</Text>
 
-      {/* TODO: нужно добавить хелпер на маску ввода */}
-      <TextInput
-        style={styles.input}
-        value={form.phone_number}
-        placeholder="7 999 000-00-00"
-        onChangeText={(phone_number) => setForm({ ...form, phone_number })}
-      />
+          <Text style={styles.desc}>{t("auth.join.desc")}</Text>
 
-      <Pressable onPress={handleSubmit} disabled={disabled}>
-        <Text style={styles.button(disabled)}>{t("auth.join.button")}</Text>
-      </Pressable>
-    </View>
+          {/* TODO: нужно добавить хелпер на маску ввода */}
+          <TextInput
+            style={styles.input}
+            value={form.phone_number}
+            placeholder="7 999 000-00-00"
+            onChangeText={(phone_number) => setForm({ ...form, phone_number })}
+            keyboardType="phone-pad"
+          />
+
+          <Pressable
+            style={styles.press}
+            onPress={handleSubmit}
+            disabled={disabled}
+          >
+            <Text style={styles.button(disabled)}>{t("auth.join.button")}</Text>
+          </Pressable>
+        </View>
+      </ScrollView>
+    </KeyboardAvoidingView>
   );
 });
 
 const styles = StyleSheet.create((theme) => ({
   root: {
     paddingHorizontal: theme.padding.x,
-    marginTop: theme.margin.l,
+    marginVertical: theme.margin.l,
   },
 
   title: {
@@ -71,13 +90,17 @@ const styles = StyleSheet.create((theme) => ({
   input: {
     color: theme.colors.text.primary,
     fontSize: theme.fonts.base * 1.5,
-    lineHeight: 0,
+    height: 60,
     fontWeight: 500,
     paddingVertical: theme.padding.y * 1.5,
     paddingHorizontal: theme.padding.y * 3,
     backgroundColor: theme.colors.background.input,
     borderRadius: theme.border.radius,
     marginBottom: theme.margin.s,
+  },
+
+  press: {
+    // marginBottom: theme.margin.l,
   },
 
   button: (disabled: boolean) => ({

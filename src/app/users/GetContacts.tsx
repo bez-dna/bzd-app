@@ -27,16 +27,14 @@ export const GetContacts = () => {
       ),
     });
 
-    await store.updateData();
+    await store.update();
   };
 
   return (
     <View style={styles.root}>
-      <Text style={styles.desc}>{t("sources.contacts.get.desc")}</Text>
+      <Text style={styles.desc}>{t("users.get.desc")}</Text>
       <Pressable onPress={getContacts} style={styles.press}>
-        <Text style={styles.button(false)}>
-          {t("sources.contacts.get.button")}
-        </Text>
+        <Text style={styles.button(false)}>{t("users.get.button")}</Text>
       </Pressable>
     </View>
   );
