@@ -5,7 +5,6 @@ import { type MainStore, useMainStore } from "../app/main/MainStore";
 import { AuthAPI } from "./AuthApi";
 import { ContactsAPI } from "./ContactsApi";
 import { MessagesAPI } from "./MessagesApi";
-import { SourcesAPI } from "./SourcesApi";
 import { TopicsAPI } from "./TopicsApi";
 import { UsersAPI } from "./UsersApi";
 
@@ -16,7 +15,6 @@ export class API {
   topics: TopicsAPI;
   messages: MessagesAPI;
   contacts: ContactsAPI;
-  sources: SourcesAPI;
   users: UsersAPI;
 
   constructor(mainStore: MainStore) {
@@ -31,7 +29,6 @@ export class API {
     this.topics = new TopicsAPI(this);
     this.messages = new MessagesAPI(this);
     this.contacts = new ContactsAPI(this);
-    this.sources = new SourcesAPI(this);
     this.users = new UsersAPI(this);
 
     this.client.interceptors.request.use((config) => {

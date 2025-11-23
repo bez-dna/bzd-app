@@ -5,8 +5,7 @@ import type { API } from "../../api/Api";
 
 export class UsersStore {
   api: API;
-  sources: SourcesModel = [];
-  contacts: ContactsModel = [];
+  users: UsersModel = [];
 
   constructor(api: API) {
     makeAutoObservable(this);
@@ -14,22 +13,16 @@ export class UsersStore {
     this.api = api;
   }
 
-  updateData = async () => {
-    const { sources, contacts } = await this.api.users.get_users();
+  update = async () => {
+    const { users } = await this.api.users.get_users();
 
     runInAction(() => {
-      this.setData(sources, contacts);
+      this.users = users;
     });
   };
 
-  setData = (sources: SourcesModel, contacts: ContactsModel) => {
-    this.sources = sources;
-    this.contacts = contacts;
-  };
-
-  clearData = () => {
-    this.sources = [];
-    this.contacts = [];
+  terminate = () => {
+    this.users = [];
   };
 }
 
@@ -43,42 +36,11 @@ export const useUsersStore = (): UsersStore => {
   return store;
 };
 
-export type SourceModel = {
-  source_id: string;
-
-  user: {
-    user_id: string;
-    name: string;
-    phone: string;
-    abbr: string;
-    color: string;
-  };
-
-  topics: TopicsModel;
+export type UserModel = {
+  user_id: string;
+  name: string;
+  abbr: string;
+  color: string;
 };
 
-export type SourcesModel = SourceModel[];
-
-export type ContactModel = {
-  contact_id: string;
-  contact_name: string;
-  user: {
-    user_id: string;
-    name: string;
-    phone: string;
-    abbr: string;
-    color: string;
-  };
-};
-
-export type ContactsModel = ContactModel[];
-
-export type TopicModel = {
-  topic_id: string;
-  title: string;
-  topic_user: {
-    topic_user_id: string;
-  } | null;
-};
-
-export type TopicsModel = TopicModel[];
+export type UsersModel = UserModel[];

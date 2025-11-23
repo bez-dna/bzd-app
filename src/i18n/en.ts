@@ -19,7 +19,11 @@ export const dict = {
       },
     },
 
-    sources: {
+    users: {
+      list: {
+        title: "Contacts",
+      },
+
       header: {
         logout: "Logout",
       },
@@ -28,24 +32,16 @@ export const dict = {
         desc: "it's you",
       },
 
-      sources: {
-        title: "Sources",
-      },
-
-      contacts: {
-        title: "Contacts",
-        button: "Add",
-        get: {
-          desc: "TBD: Allow contacts access",
-          button: "TBD: Allow",
-        },
+      get: {
+        desc: "TBD: Allow contacts access",
+        button: "TBD: Allow",
       },
     },
 
     messages: {
       header: {
         new_message: "New message",
-        sources: "Sources",
+        users: "Sources",
       },
 
       no_auth: {

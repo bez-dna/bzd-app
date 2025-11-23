@@ -51,7 +51,7 @@ const Sources = () => {
 
   return (
     <Pressable style={[styles.item, styles.sources]} onPress={handlePress}>
-      <Text style={styles.label}>{t("messages.header.sources")}</Text>
+      <Text style={styles.label}>{t("messages.header.users")}</Text>
     </Pressable>
   );
 };

@@ -32,7 +32,7 @@ const styles = StyleSheet.create((theme) => ({
   root: {
     flexDirection: "row",
     justifyContent: "space-between",
-    marginBottom: theme.margin.l,
+    // marginBottom: theme.margin.s,
   },
 
   left: {

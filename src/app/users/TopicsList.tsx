@@ -25,7 +25,7 @@ const TopicListItem = ({ topic }: { topic: TopicModel }) => {
       topic_id: topic.topic_id,
     });
 
-    await store.updateData();
+    await store.update();
   };
 
   const handleDelete = async (topic_user_id: string) => {
@@ -33,7 +33,7 @@ const TopicListItem = ({ topic }: { topic: TopicModel }) => {
       topic_user_id,
     });
 
-    await store.updateData();
+    await store.update();
   };
 
   const handlePress = () => {

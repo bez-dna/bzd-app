@@ -18,7 +18,7 @@ export const User = () => {
 
       <View style={styles.user}>
         <Text style={[styles.name]}>{mainStore.user.name}</Text>
-        <Text style={[styles.desc]}>{t("sources.user.desc")}</Text>
+        <Text style={[styles.desc]}>{t("users.user.desc")}</Text>
       </View>
 
       <Logout />
@@ -36,7 +36,7 @@ const Logout = () => {
 
   return (
     <Pressable style={styles.action} onPress={handlePress}>
-      <Text style={styles.logout}>{t("sources.header.logout")}</Text>
+      <Text style={styles.logout}>{t("users.header.logout")}</Text>
     </Pressable>
   );
 };

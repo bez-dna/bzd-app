@@ -40,13 +40,13 @@ export const App = () => {
 type MainTabsParamList = StaticParamList<typeof MainTabs>;
 
 type MessagesStackParamList = StaticParamList<typeof MessagesStack>;
-type SourcesStackParamList = StaticParamList<typeof UsersStack>;
+type UsersStackParamList = StaticParamList<typeof UsersStack>;
 
 declare global {
   namespace ReactNavigation {
     interface RootParamList
       extends MainTabsParamList,
-        SourcesStackParamList,
+        UsersStackParamList,
         MessagesStackParamList {}
   }
 }
