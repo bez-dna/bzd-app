@@ -5,7 +5,7 @@
     "ios": "react-native run-ios",
     "start": "react-native start",
     "ci": "biome ci . --error-on-warnings",
-    "check": "biome check . --write"
+    "check": "biome check . --write --unsafe"
   },
   "dependencies": {
     "@react-native-async-storage/async-storage": "2.2.0",

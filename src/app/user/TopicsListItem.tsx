@@ -3,9 +3,9 @@ import { Pressable, Text, View } from "react-native";
 import { StyleSheet } from "react-native-unistyles";
 
 import { useAPI } from "../../api/Api";
-import { type TopicModel, useUserStore } from "./UserStore";
-import { Timing } from "./Timing";
 import { Rate } from "./Rate";
+import { Timing } from "./Timing";
+import { type TopicModel, useUserStore } from "./UserStore";
 
 export const TopicListItem = ({ topic }: { topic: TopicModel }) => {
   const api = useAPI();

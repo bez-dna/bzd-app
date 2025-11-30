@@ -1,16 +1,10 @@
 import { observer } from "mobx-react-lite";
 import { Pressable, Text, View } from "react-native";
 
-import {
-  RateModel,
-  TopicModel,
-  TopicUserModel,
-  useUserStore,
-} from "./UserStore";
-import { StyleSheet } from "react-native-unistyles";
-import { styles } from "./Timing";
 import { useAPI } from "../../api/Api";
 import { useI18n } from "../../i18n/I18nStore";
+import { styles } from "./Timing";
+import { type RateModel, type TopicUserModel, useUserStore } from "./UserStore";
 
 const RATE_OPTIONS: Array<RateModel> = ["RATE_Q", "RATE_QD", "RATE_QW"];
 

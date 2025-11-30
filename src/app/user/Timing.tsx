@@ -1,16 +1,14 @@
 import { observer } from "mobx-react-lite";
 import { Pressable, Text, View } from "react-native";
-
-import {
-  TopicModel,
-  TopicUserModel,
-  useUserStore,
-  RateModel,
-  TimingModel,
-} from "./UserStore";
 import { StyleSheet } from "react-native-unistyles";
+
 import { useAPI } from "../../api/Api";
 import { useI18n } from "../../i18n/I18nStore";
+import {
+  type TimingModel,
+  type TopicUserModel,
+  useUserStore,
+} from "./UserStore";
 
 const TIMING_OPTIONS: Array<TimingModel> = [
   "TIMING_INSTANT",
