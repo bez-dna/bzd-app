@@ -55,3 +55,6 @@ export const useAPI = (): API => {
 
   return mainStore.api;
 };
+
+export type RATE = "RATE_Q" | "RATE_QD" | "RATE_QW";
+export type TIMING = "TIMING_INSTANT" | "TIMING_WEEKDAYS" | "TIMING_WEEKENDS";

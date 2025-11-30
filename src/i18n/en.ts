@@ -38,6 +38,22 @@ export const dict = {
       },
     },
 
+    user: {
+      topics: {
+        // немного лень разбираться с lower case в TS, поэтому пока так, но нужно привести к одному виду словарь
+        timing: {
+          TIMING_INSTANT: "TIMING_INSTANT",
+          TIMING_WEEKDAYS: "TIMING_WEEKDAYS",
+          TIMING_WEEKENDS: "TIMING_WEEKENDS",
+        },
+        rate: {
+          RATE_Q: "RATE_Q",
+          RATE_QD: "RATE_QD",
+          RATE_QW: "RATE_QW",
+        },
+      },
+    },
+
     messages: {
       header: {
         new_message: "New message",

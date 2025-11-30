@@ -38,6 +38,21 @@ export const dict: Dict = {
       },
     },
 
+    user: {
+      topics: {
+        timing: {
+          TIMING_INSTANT: "Показывать сразу",
+          TIMING_WEEKDAYS: "Только по будням",
+          TIMING_WEEKENDS: "Только по выходным",
+        },
+        rate: {
+          RATE_Q: "Показывать все сообщения",
+          RATE_QD: "Раз в день",
+          RATE_QW: "Раз в неделю",
+        },
+      },
+    },
+
     messages: {
       header: {
         new_message: "Запостить",
