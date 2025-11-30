@@ -58,9 +58,20 @@ export type TopicModel = {
   topic_id: string;
   title: string;
 
-  topic_user: {
-    topic_user_id: string;
-  } | null;
+  topic_user: TopicUserModel | null;
 };
+
+export type TopicUserModel = {
+  topic_user_id: string;
+  rate: RateModel;
+  timing: TimingModel;
+};
+
+export type RateModel = "RATE_Q" | "RATE_QD" | "RATE_QW";
+
+export type TimingModel =
+  | "TIMING_INSTANT"
+  | "TIMING_WEEKDAYS"
+  | "TIMING_WEEKENDS";
 
 export type TopicsModel = TopicModel[];

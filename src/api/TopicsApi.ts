@@ -1,4 +1,4 @@
-import type { API } from "./Api";
+import type { API, RATE, TIMING } from "./Api";
 
 export class TopicsAPI {
   api: API;
@@ -29,6 +29,10 @@ export class TopicsAPI {
   delete_topic_user = async (data: DeleteTopicUserRequest): Promise<void> => {
     await this.api.client.delete("/topics/users", { data });
   };
+
+  update_topic_user = async (data: UpdateTopicUserRequest): Promise<void> => {
+    await this.api.client.patch("/topics/users", data);
+  };
 }
 
 type GetTopicsResponse = {
@@ -58,4 +62,10 @@ type CreateTopicUserResponse = {
 
 type DeleteTopicUserRequest = {
   topic_user_id: string;
+};
+
+type UpdateTopicUserRequest = {
+  topic_user_id: string;
+  rate: RATE;
+  timing: TIMING;
 };

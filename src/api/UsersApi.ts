@@ -1,4 +1,4 @@
-import type { API } from "./Api";
+import type { API, RATE, TIMING } from "./Api";
 
 export class UsersAPI {
   api: API;
@@ -60,6 +60,8 @@ type GetUserTopicsResponse = {
     title: string;
     topic_user: {
       topic_user_id: string;
+      rate: RATE;
+      timing: TIMING;
     } | null;
   }[];
 };
