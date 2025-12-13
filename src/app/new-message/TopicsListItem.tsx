@@ -1,8 +1,8 @@
+import { HashIcon } from "lucide-react-native";
 import { observer } from "mobx-react-lite";
 import { useMemo } from "react";
 import { Pressable, Text, View } from "react-native";
 import { StyleSheet } from "react-native-unistyles";
-import { HashIcon } from "lucide-react-native";
 
 import { type TopicModel, useNewMessageStore } from "./NewMessageStore";
 

@@ -5,13 +5,12 @@ import { Pressable, Text, TextInput, View } from "react-native";
 import { StyleSheet } from "react-native-unistyles";
 
 import type { MessagesStackNavigationProp } from "../../App";
-import { useAPI } from "../../api/Api";
 import { useI18n } from "../../i18n/I18nStore";
+import { type ERROR, useMainStore } from "../main/MainStore";
 import { Warn } from "../main/Warn";
 import { Header } from "./Header";
 import { useNewMessageStore } from "./NewMessageStore";
 import { TopicsList } from "./TopicsList";
-import { type ERROR, useMainStore } from "../main/MainStore";
 
 const WARN_TYPE: ERROR = "NEW_MESSAGE";
 
