@@ -67,10 +67,12 @@ export const dict = {
     },
 
     new_message: {
+      placeholder: "Post something...",
       button: "Post",
 
       topics: {
         edit: "Edit",
+        desc: "TDB: DESC",
       },
     },
 

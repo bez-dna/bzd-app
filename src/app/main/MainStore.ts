@@ -11,12 +11,13 @@ export class MainStore {
   initialized = false;
 
   jwt: string | null = null;
-  user: User | null = null;
+  user: UserModel | null = null;
 
   api: API;
   i18n: I18nStore;
 
-  error = false;
+  errors: Map<ERROR, boolean> = new Map();
+  error: string = "";
 
   constructor() {
     makeAutoObservable(this);
@@ -53,12 +54,14 @@ export class MainStore {
     });
   };
 
-  setError = () => {
-    this.error = true;
+  setError = (type: ERROR) => {
+    this.errors.set(type, true);
+    this.error = type;
   };
 
-  clearError = () => {
-    this.error = false;
+  clearError = (type: ERROR) => {
+    this.errors.delete(type);
+    this.error = "";
   };
 
   get isAuth(): boolean {
@@ -76,9 +79,11 @@ export const useMainStore = (): MainStore => {
   return mainStore;
 };
 
-type User = {
+type UserModel = {
   user_id: string;
   name: string;
   abbr: string;
   color: string;
 };
+
+export type ERROR = "NEW_MESSAGE" | "QQQ";

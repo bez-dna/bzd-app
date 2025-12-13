@@ -11,6 +11,7 @@ export class NewMessageStore {
   topic_ids: string[] = [];
   code: string = nanoid();
   topics: TopicsModel = [];
+  // pending: boolean = false;
 
   constructor(api: API) {
     makeAutoObservable(this);
@@ -36,14 +37,16 @@ export class NewMessageStore {
       : [...this.topic_ids, topic_id];
   };
 
-  get form() {
-    return {
-      text: this.text,
-      code: this.code,
-      topic_ids: this.topic_ids,
-      message_id: null,
-    };
-  }
+  saveData = async (): Promise<MessageIdModel> => {
+    return await this.api.messages
+      .create_message({
+        text: this.text,
+        code: this.code,
+        topic_ids: this.topic_ids,
+        message_id: null,
+      })
+      .then((res) => res.message.message_id);
+  };
 }
 
 export const NewMessageStoreContext = createContext<NewMessageStore | null>(
@@ -57,6 +60,8 @@ export const useNewMessageStore = (): NewMessageStore => {
 
   return newMessageStore;
 };
+
+export type MessageIdModel = string;
 
 export type TopicModel = {
   topic_id: string;

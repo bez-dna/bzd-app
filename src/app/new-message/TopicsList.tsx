@@ -19,11 +19,14 @@ export const TopicsList = observer(() => {
 
   return (
     <View style={styles.root}>
-      <View style={styles.desc}></View>
+      <View style={styles.desc}>
+        <Text style={styles.descText}>{t("new_message.topics.desc")}</Text>
+      </View>
 
       <View style={styles.topics}>
         <Pressable style={styles.press} onPress={handlePress}>
           <CogIcon style={styles.icon} size={24} />
+
           <View style={styles.button}>
             <Text style={styles.buttonText}>
               {t("new_message.topics.edit")}
@@ -44,6 +47,7 @@ const styles = StyleSheet.create((theme) => ({
 
   desc: {
     marginBottom: theme.margin.s,
+    maxWidth: "80%",
   },
 
   descText: {
@@ -75,5 +79,8 @@ const styles = StyleSheet.create((theme) => ({
     fontSize: theme.fonts.main,
   },
 
-  icon: {},
+  icon: {
+    margin: 0,
+    color: theme.colors.text.primary,
+  },
 }));

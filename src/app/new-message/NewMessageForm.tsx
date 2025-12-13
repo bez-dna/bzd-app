@@ -1,6 +1,6 @@
 import { useFocusEffect, useNavigation } from "@react-navigation/native";
 import { observer } from "mobx-react-lite";
-import { useCallback, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import { Pressable, Text, TextInput, View } from "react-native";
 import { StyleSheet } from "react-native-unistyles";
 
@@ -11,26 +11,29 @@ import { Warn } from "../main/Warn";
 import { Header } from "./Header";
 import { useNewMessageStore } from "./NewMessageStore";
 import { TopicsList } from "./TopicsList";
+import { type ERROR, useMainStore } from "../main/MainStore";
+
+const WARN_TYPE: ERROR = "NEW_MESSAGE";
 
 export const NewMessageForm = observer(() => {
-  const api = useAPI();
   const { t } = useI18n();
   const store = useNewMessageStore();
+  const mainStore = useMainStore();
   const nav = useNavigation<MessagesStackNavigationProp<"Message">>();
 
   const [pending, setPending] = useState(false);
 
   const handleSubmit = async () => {
-    setPending(true);
+    try {
+      setPending(true);
+      mainStore.clearError(WARN_TYPE);
 
-    const data = await api.messages
-      .create_message(store.form)
-      .catch(() => null);
-
-    setPending(false);
-
-    if (data) {
-      nav.popTo("Message", { messageId: data.message.message_id });
+      const messageId = await store.saveData();
+      nav.popTo("Message", { messageId });
+    } catch (_) {
+      mainStore.setError(WARN_TYPE);
+    } finally {
+      setPending(false);
     }
   };
 
@@ -39,33 +42,45 @@ export const NewMessageForm = observer(() => {
       (async () => {
         await store.updateData();
       })();
-    }, [store.updateData]),
+
+      return () => {
+        mainStore.clearError(WARN_TYPE);
+      };
+    }, [store.updateData, mainStore.clearError]),
   );
+
+  const isReady = useMemo(() => {
+    if (store.text.length < 3) return false;
+    if (store.topic_ids.length < 1) return false;
+    if (pending) return false;
+
+    return true;
+  }, [store.text, store.topic_ids, pending]);
 
   return (
     <>
       <Header />
 
-      <Warn />
+      <Warn type={WARN_TYPE} />
 
       <View style={styles.root}>
         <TopicsList />
 
         <TextInput
-          style={[styles.input]}
+          style={styles.input}
           value={store.text}
           multiline
           numberOfLines={20}
-          placeholder="Post something..."
+          placeholder={t("new_message.placeholder")}
           onChangeText={(it) => store.setText(it)}
         />
 
         <Pressable
           style={styles.press}
           onPress={handleSubmit}
-          disabled={pending}
+          disabled={!isReady}
         >
-          <Text style={styles.button(pending)}>{t("new_message.button")}</Text>
+          <Text style={styles.button(!isReady)}>{t("new_message.button")}</Text>
         </Pressable>
       </View>
     </>
@@ -84,6 +99,7 @@ const styles = StyleSheet.create((theme) => ({
     padding: theme.padding.y * 2,
     borderRadius: theme.border.radius,
     marginBottom: theme.margin.s,
+    fontSize: theme.fonts.main,
     minHeight: 200,
   },
 
