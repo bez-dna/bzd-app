@@ -68,9 +68,8 @@ export const dict: Dict = {
     new_message: {
       button: "Запостить",
 
-      no_auth: {
-        desc: "Чтобы начать постить нужно войти",
-        button: "Присоединиться",
+      topics: {
+        edit: "Настроить",
       },
     },
 

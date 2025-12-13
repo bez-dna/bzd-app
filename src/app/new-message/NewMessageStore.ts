@@ -1,23 +1,33 @@
-import { makeAutoObservable } from "mobx";
+import { makeAutoObservable, runInAction } from "mobx";
 import { nanoid } from "nanoid";
 import { createContext, useContext } from "react";
 
+import type { API } from "../../api/Api";
+
 export class NewMessageStore {
+  api: API;
+
   text: string = "";
   topic_ids: string[] = [];
   code: string = nanoid();
-  topics: Topics = [];
+  topics: TopicsModel = [];
 
-  constructor() {
+  constructor(api: API) {
     makeAutoObservable(this);
+
+    this.api = api;
   }
+
+  updateData = async () => {
+    const { topics } = await this.api.topics.get_topics();
+
+    runInAction(() => {
+      this.topics = topics;
+    });
+  };
 
   setText = (text: string) => {
     this.text = text;
-  };
-
-  setTopics = (topics: Topics) => {
-    this.topics = topics;
   };
 
   toggleTopicId = (topic_id: string) => {
@@ -48,9 +58,9 @@ export const useNewMessageStore = (): NewMessageStore => {
   return newMessageStore;
 };
 
-export type Topic = {
+export type TopicModel = {
   topic_id: string;
   title: string;
 };
 
-export type Topics = Topic[];
+export type TopicsModel = TopicModel[];

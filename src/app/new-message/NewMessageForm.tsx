@@ -1,6 +1,6 @@
-import { useNavigation } from "@react-navigation/native";
+import { useFocusEffect, useNavigation } from "@react-navigation/native";
 import { observer } from "mobx-react-lite";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { Pressable, Text, TextInput, View } from "react-native";
 import { StyleSheet } from "react-native-unistyles";
 
@@ -10,12 +10,12 @@ import { useI18n } from "../../i18n/I18nStore";
 import { Warn } from "../main/Warn";
 import { Header } from "./Header";
 import { useNewMessageStore } from "./NewMessageStore";
-import { TopicsSelect } from "./TopicsSelect";
+import { TopicsList } from "./TopicsList";
 
-export const CreateMessage = observer(() => {
+export const NewMessageForm = observer(() => {
   const api = useAPI();
   const { t } = useI18n();
-  const newMessageStore = useNewMessageStore();
+  const store = useNewMessageStore();
   const nav = useNavigation<MessagesStackNavigationProp<"Message">>();
 
   const [pending, setPending] = useState(false);
@@ -24,7 +24,7 @@ export const CreateMessage = observer(() => {
     setPending(true);
 
     const data = await api.messages
-      .create_message(newMessageStore.form)
+      .create_message(store.form)
       .catch(() => null);
 
     setPending(false);
@@ -34,12 +34,13 @@ export const CreateMessage = observer(() => {
     }
   };
 
-  useEffect(() => {
-    (async () => {
-      const data = await api.topics.get_topics();
-      newMessageStore.setTopics(data.topics);
-    })();
-  }, [api.topics.get_topics, newMessageStore.setTopics]);
+  useFocusEffect(
+    useCallback(() => {
+      (async () => {
+        await store.updateData();
+      })();
+    }, [store.updateData]),
+  );
 
   return (
     <>
@@ -48,15 +49,15 @@ export const CreateMessage = observer(() => {
       <Warn />
 
       <View style={styles.root}>
-        <TopicsSelect />
+        <TopicsList />
 
         <TextInput
           style={[styles.input]}
-          value={newMessageStore.text}
+          value={store.text}
           multiline
           numberOfLines={20}
           placeholder="Post something..."
-          onChangeText={(it) => newMessageStore.setText(it)}
+          onChangeText={(it) => store.setText(it)}
         />
 
         <Pressable

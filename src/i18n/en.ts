@@ -69,9 +69,8 @@ export const dict = {
     new_message: {
       button: "Post",
 
-      no_auth: {
-        desc: "TDB: auth please",
-        button: "Join",
+      topics: {
+        edit: "Edit",
       },
     },
 
