@@ -1,7 +1,7 @@
 import { observer } from "mobx-react-lite";
-import { Pressable, Text, View } from "react-native";
-import { StyleSheet } from "react-native-unistyles";
 import { useMemo } from "react";
+import { Pressable, Text } from "react-native";
+import { StyleSheet } from "react-native-unistyles";
 
 import { type TopicModel, useNewMessageStore } from "./NewMessageStore";
 

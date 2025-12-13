@@ -1,12 +1,12 @@
 import { useNavigation } from "@react-navigation/native";
+import { CogIcon } from "lucide-react-native";
 import { observer } from "mobx-react-lite";
 import { Pressable, Text, View } from "react-native";
 import { StyleSheet } from "react-native-unistyles";
-import { CogIcon } from "lucide-react-native";
 
+import { useI18n } from "../../i18n/I18nStore";
 import { useNewMessageStore } from "./NewMessageStore";
 import { TopicsListItem } from "./TopicsListItem";
-import { useI18n } from "../../i18n/I18nStore";
 
 export const TopicsList = observer(() => {
   const nav = useNavigation();
