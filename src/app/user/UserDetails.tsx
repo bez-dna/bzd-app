@@ -5,7 +5,7 @@ import { ScrollView, View } from "react-native";
 import { StyleSheet } from "react-native-unistyles";
 
 import { useI18n } from "../../i18n/I18nStore";
-import { Warn } from "../main/Warn";
+// import { Warn } from "../main/Warn";
 import { Header } from "./Header";
 import { TopicsList } from "./TopicsList";
 import { User } from "./User";
@@ -33,7 +33,7 @@ export const UserDetails = observer(() => {
     <ScrollView>
       <Header />
 
-      <Warn />
+      {/* <Warn /> */}
 
       <View style={styles.user}>
         <User user={store.user} />
