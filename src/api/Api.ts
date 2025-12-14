@@ -40,11 +40,11 @@ export class API {
     });
 
     this.client.interceptors.response.use(
-      (response) => {
-        return response;
+      (res) => {
+        return res;
       },
-      (_) => {
-        this.mainStore.setError();
+      (err) => {
+        return Promise.reject(err);
       },
     );
   }

@@ -4,21 +4,28 @@ import { Pressable, Text, View } from "react-native";
 import { StyleSheet } from "react-native-unistyles";
 
 import { useI18n } from "../../i18n/I18nStore";
-import { useMainStore } from "./MainStore";
+import { type ERROR, useMainStore } from "./MainStore";
 
-// TBD: сейчас один компонент используется на всех страницах, т.е. если в одной ручке с трельнуло,
-// рендерим везде, была мысль ошибку сделать enum или очищать стор ошибки на каждый транзишн скрана,
-// но я оставил это будущему мне, пусть разбирается
+// TBD: немного переписал, но мне не очень нравится
 
-export const Warn = observer(() => {
-  const mainStore = useMainStore();
+export const Warn = observer(({ type }: { type: ERROR }) => {
   const { t } = useI18n();
+  const mainStore = useMainStore();
 
   const handlePress = () => {
-    mainStore.clearError();
+    mainStore.clearError(type);
   };
 
-  if (!mainStore.error) return;
+  // кажется вызывается каждый раз, но useMemo не сработал, возможно из-за мапки
+  const error = (() => {
+    if (mainStore.errors.get(type) === true) {
+      return true;
+    } else {
+      return false;
+    }
+  })();
+
+  if (!error) return;
 
   return (
     <View style={styles.root}>

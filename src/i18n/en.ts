@@ -67,16 +67,24 @@ export const dict = {
     },
 
     new_message: {
+      placeholder: "Post something...",
       button: "Post",
 
-      no_auth: {
-        desc: "TDB: auth please",
-        button: "Join",
+      topics: {
+        edit: "Edit",
+        desc: "TDB: DESC",
       },
     },
 
     warn: {
       text: "TBD: Something went wrong",
+    },
+
+    topics: {
+      new_topic: {
+        placeholder: "New topic...",
+        button: "Add",
+      },
     },
   },
 };

@@ -5,6 +5,7 @@ import type { API } from "../../api/Api";
 
 export class MessagesStore {
   api: API;
+
   messages: Map<string, MessageModel> = new Map();
   cursor_message_id: CursorMessageIdModel = null;
 

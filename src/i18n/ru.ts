@@ -40,6 +40,7 @@ export const dict: Dict = {
 
     user: {
       topics: {
+        // placeholder
         timing: {
           TIMING_INSTANT: "Показывать сразу",
           TIMING_WEEKDAYS: "Только по будням",
@@ -66,16 +67,24 @@ export const dict: Dict = {
     },
 
     new_message: {
+      placeholder: "Напишите что-то...",
       button: "Запостить",
 
-      no_auth: {
-        desc: "Чтобы начать постить нужно войти",
-        button: "Присоединиться",
+      topics: {
+        edit: "Настроить",
+        desc: "Нужно обязательно выбрать хотя бы одну тему чтобы запостить",
       },
     },
 
     warn: {
       text: "Что-то пошло не так..",
+    },
+
+    topics: {
+      new_topic: {
+        placeholder: "Новая тема...",
+        button: "Добавить",
+      },
     },
   },
 };

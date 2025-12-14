@@ -6,7 +6,7 @@ import { StyleSheet } from "react-native-unistyles";
 
 import { useI18n } from "../../i18n/I18nStore";
 import { useMainStore } from "../main/MainStore";
-import { Warn } from "../main/Warn";
+// import { Warn } from "../main/Warn";
 
 export const Header = () => {
   return (
@@ -18,7 +18,7 @@ export const Header = () => {
         </View>
       </SafeAreaView>
 
-      <Warn />
+      {/* <Warn /> */}
     </>
   );
 };
