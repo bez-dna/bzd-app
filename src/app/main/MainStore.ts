@@ -86,4 +86,4 @@ type UserModel = {
   color: string;
 };
 
-export type ERROR = "NEW_MESSAGE" | "QQQ";
+export type ERROR = "NEW_MESSAGE" | "NEW_TOPIC";

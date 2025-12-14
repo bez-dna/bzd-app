@@ -79,5 +79,12 @@ export const dict = {
     warn: {
       text: "TBD: Something went wrong",
     },
+
+    topics: {
+      new_topic: {
+        placeholder: "New topic...",
+        button: "Add",
+      },
+    },
   },
 };

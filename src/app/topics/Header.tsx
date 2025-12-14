@@ -2,18 +2,26 @@ import { useNavigation } from "@react-navigation/native";
 import { XIcon } from "lucide-react-native";
 import { Pressable, View } from "react-native";
 import { StyleSheet } from "react-native-unistyles";
+import { NewTopic } from "./NewTopic";
+import { Warn } from "../main/Warn";
 
 export const Header = () => {
   return (
-    <View style={styles.root}>
-      <View style={styles.left}>
-        <BacktoMessages />
+    <>
+      <View style={styles.root}>
+        <View style={styles.left}>
+          <BacktoNewMessage />
+        </View>
       </View>
-    </View>
+
+      <Warn type="NEW_TOPIC" />
+
+      <NewTopic />
+    </>
   );
 };
 
-const BacktoMessages = () => {
+const BacktoNewMessage = () => {
   const nav = useNavigation();
 
   const handlePress = () => {

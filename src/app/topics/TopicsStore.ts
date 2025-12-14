@@ -1,15 +1,50 @@
-import { makeAutoObservable } from "mobx";
+import { makeAutoObservable, runInAction } from "mobx";
 import { createContext, useContext } from "react";
 
-export class TopicsStore {
-  topics: Topics = [];
+import type { API } from "../../api/Api";
+import { MainStore } from "../main/MainStore";
 
-  constructor() {
+export class TopicsStore {
+  api: API;
+
+  title: string = "";
+  topics: TopicsModel = [];
+
+  mainStore: MainStore;
+
+  constructor(mainStore: MainStore) {
     makeAutoObservable(this);
+
+    this.mainStore = mainStore;
+    this.api = mainStore.api;
   }
 
-  setTopics = (topics: Topics) => {
-    this.topics = topics;
+  initialize = async () => {
+    await this.update();
+  };
+
+  terminate = () => {
+    this.mainStore.clearError("NEW_TOPIC");
+  };
+
+  update = async () => {
+    const { topics } = await this.api.topics.get_topics();
+
+    runInAction(() => {
+      this.topics = topics;
+    });
+  };
+
+  save = async (): Promise<void> => {
+    await this.api.topics.create_topic({ title: this.title });
+
+    runInAction(() => {
+      this.title = "";
+    });
+  };
+
+  setTitle = (title: string) => {
+    this.title = title;
   };
 }
 
@@ -23,9 +58,9 @@ export const useTopicsStore = (): TopicsStore => {
   return topicsStore;
 };
 
-export type Topic = {
+export type TopicModel = {
   topic_id: string;
   title: string;
 };
 
-export type Topics = Topic[];
+export type TopicsModel = TopicModel[];

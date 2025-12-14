@@ -79,5 +79,12 @@ export const dict: Dict = {
     warn: {
       text: "Что-то пошло не так..",
     },
+
+    topics: {
+      new_topic: {
+        placeholder: "Новая тема...",
+        button: "Добавить",
+      },
+    },
   },
 };
