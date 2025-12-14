@@ -2,7 +2,7 @@ import { makeAutoObservable, runInAction } from "mobx";
 import { createContext, useContext } from "react";
 
 import type { API } from "../../api/Api";
-import { MainStore } from "../main/MainStore";
+import type { MainStore } from "../main/MainStore";
 
 export class TopicsStore {
   api: API;

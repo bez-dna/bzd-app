@@ -1,9 +1,8 @@
-import { useNavigation } from "@react-navigation/native";
-import { Pressable, Text, View } from "react-native";
+import { HashIcon } from "lucide-react-native";
+import { Text, View } from "react-native";
 import { StyleSheet } from "react-native-unistyles";
 
-import { TopicModel } from "./TopicsStore";
-import { HashIcon } from "lucide-react-native";
+import type { TopicModel } from "./TopicsStore";
 
 export const TopicsListItem = ({ topic }: { topic: TopicModel }) => {
   return (

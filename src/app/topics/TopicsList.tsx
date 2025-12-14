@@ -1,14 +1,11 @@
-import { observer } from "mobx-react-lite";
-import { useCallback, useEffect } from "react";
-import { FlatList, Text, View } from "react-native";
-import { StyleSheet } from "react-native-unistyles";
-
-import { useAPI } from "../../api/Api";
-import { Header } from "./Header";
-import { NewTopic } from "./NewTopic";
-import { type TopicModel, useTopicsStore } from "./TopicsStore";
 import { useFocusEffect } from "@react-navigation/native";
+import { observer } from "mobx-react-lite";
+import { useCallback } from "react";
+import { FlatList } from "react-native";
+
+import { Header } from "./Header";
 import { TopicsListItem } from "./TopicsListItem";
+import { useTopicsStore } from "./TopicsStore";
 
 export const TopicsList = observer(() => {
   const store = useTopicsStore();

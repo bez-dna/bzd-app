@@ -3,15 +3,13 @@ import { useMemo, useState } from "react";
 import { Pressable, Text, TextInput, View } from "react-native";
 import { StyleSheet } from "react-native-unistyles";
 
-import { useAPI } from "../../api/Api";
-import { useTopicsStore } from "./TopicsStore";
 import { useI18n } from "../../i18n/I18nStore";
-import { ERROR, useMainStore } from "../main/MainStore";
+import { type ERROR, useMainStore } from "../main/MainStore";
+import { useTopicsStore } from "./TopicsStore";
 
 const WARN_TYPE: ERROR = "NEW_TOPIC";
 
 export const NewTopic = observer(() => {
-  const api = useAPI();
   const store = useTopicsStore();
   const mainStore = useMainStore();
   const { t } = useI18n();

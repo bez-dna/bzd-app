@@ -2,8 +2,9 @@ import { useNavigation } from "@react-navigation/native";
 import { XIcon } from "lucide-react-native";
 import { Pressable, View } from "react-native";
 import { StyleSheet } from "react-native-unistyles";
-import { NewTopic } from "./NewTopic";
+
 import { Warn } from "../main/Warn";
+import { NewTopic } from "./NewTopic";
 
 export const Header = () => {
   return (
